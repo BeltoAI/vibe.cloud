@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>SlyOS | The Edge Intelligence Infrastructure</title>
-    <meta name="description" content="Deploy, manage, and optimize on-device Small Language Models (SLMs). SlyOS is the complete infrastructure for local AI with zero latency and total privacy.">
-    <meta name="keywords" content="Edge AI, On-Device LLM, SLM, AI Infrastructure, SlyOS, Local Inference, SDK">
+    <meta name="description" content="Deploy, manage, and optimize on-device Small Language Models (SLMs). The complete infrastructure for local AI with zero latency. Supports Web, Ollama, and Mobile.">
+    <meta name="keywords" content="Edge AI, On-Device LLM, SLM, AI Infrastructure, SlyOS, Local Inference, SDK, Ollama, WebGPU">
     <meta name="author" content="SlyOS">
     <meta name="theme-color" content="#FF4D00">
 
@@ -16,23 +16,24 @@
     <meta property="og:image" content="./demo.png">
 
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         :root {
-            --bg-deep: #030303;
-            --accent: #FF4D00; /* Matching the flame */
-            --glass: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #ECECEC;
+            --bg-deep: #050505;
+            --bg-card: #0A0A0A;
+            --accent: #FF4D00;
+            --accent-glow: rgba(255, 77, 0, 0.15);
+            --text-main: #EDEDED;
             --text-muted: #888888;
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         body {
@@ -45,60 +46,42 @@
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Subtle Grain Overlay */
+        /* Noise Texture */
         .noise {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bW9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+');
-            pointer-events: none;
-            z-index: 50;
-            opacity: 0.4;
+            position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.04;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bW9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIxIi8+PC9zdmc+');
         }
 
-        /* Glassmorphism Utilities */
-        .glass-panel {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
+        /* Glassmorphism */
+        .glass {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
         }
-
-        /* Ambient Glows */
-        .glow-spot {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 77, 0, 0.08) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .card-hover:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px -10px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        /* Modal Transitions */
-        .modal-overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
+        /* Animations */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            transform: translateY(20px);
-            transition: transform 0.3s ease-out;
-        }
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
+        .animate-glow { animation: pulse-glow 3s infinite; }
 
-        /* Syntax Highlighting Mockup */
+        /* Code Syntax */
         .token-keyword { color: #ff79c6; }
         .token-string { color: #f1fa8c; }
         .token-function { color: #8be9fd; }
@@ -109,165 +92,231 @@
 
     <div class="noise"></div>
 
-    <div class="glow-spot top-[-200px] left-1/2 -translate-x-1/2"></div>
-    <div class="glow-spot bottom-0 right-0 opacity-50"></div>
-
-    <nav class="fixed top-0 w-full z-40 border-b border-white/5 bg-[#030303]/80 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <nav class="fixed top-0 w-full z-40 border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
-                <img src="./SlyOS_Flame.png" alt="SlyOS Logo" class="w-8 h-8 group-hover:drop-shadow-[0_0_10px_rgba(255,77,0,0.5)] transition-all">
-                <span class="text-xl font-bold tracking-tighter uppercase text-white">SlyOS</span>
+                <img src="./SlyOS_Flame.png" alt="SlyOS Logo" class="w-6 h-6 group-hover:brightness-125 transition-all">
+                <span class="text-lg font-bold tracking-tighter uppercase text-white">SlyOS</span>
             </a>
 
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-400">
-                <a href="#how-it-works" class="hover:text-white transition-colors">Architecture</a>
-                <a href="#sdk" class="hover:text-white transition-colors">SDK</a>
-                <a href="#models" class="hover:text-white transition-colors">Model Zoo</a>
+            <div class="hidden md:flex items-center gap-8 text-xs font-medium text-neutral-400 uppercase tracking-wide">
+                <a href="#workflow" class="hover:text-white transition-colors">How it Works</a>
+                <a href="#model-zoo" class="hover:text-white transition-colors">Model Zoo</a>
+                <button onclick="openModal('docs')" class="hover:text-white transition-colors">Documentation</button>
+                <button onclick="openModal('status')" class="flex items-center gap-2 hover:text-white transition-colors">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                    Status
+                </button>
             </div>
 
             <div class="flex items-center gap-4">
                 <a href="http://slyos-prod.eba-qjz3cmgq.us-east-2.elasticbeanstalk.com/api/auth/login" 
-                   class="mono text-xs text-neutral-400 hover:text-white transition-colors hidden sm:block">
-                    // CONSOLE_LOGIN
+                   class="mono text-[10px] text-neutral-500 hover:text-[var(--accent)] transition-colors hidden sm:block">
+                    console.login()
                 </a>
-                <a href="#contact" class="px-5 py-2 bg-white text-black font-semibold text-sm rounded-full hover:bg-[var(--accent)] hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                <a href="#contact" class="px-4 py-2 bg-white text-black font-bold text-xs rounded-full hover:bg-[var(--accent)] hover:text-white transition-all">
                     Get Access
                 </a>
             </div>
         </div>
     </nav>
 
-    <header class="relative pt-40 pb-20 px-6 overflow-hidden">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex justify-center mb-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest font-bold text-[var(--accent)] animate-fade-in-up">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
-                    </span>
-                    Infrastructure v1.0 Live
-                </div>
+    <header class="relative pt-40 pb-24 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-[var(--accent)] opacity-[0.08] blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/5 text-[10px] font-mono text-[var(--accent)] uppercase tracking-wider">
+                <i class="ph-bold ph-lightning"></i>
+                <span>v1.0 Production Ready</span>
             </div>
-
-            <h1 class="text-5xl md:text-8xl font-bold tracking-tight text-center leading-[0.95] mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">
-                INTELLIGENCE<br>AT THE EDGE.
+            
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[0.95]">
+                Deploy AI to the edge.<br>
+                <span class="text-neutral-500">In 4 clicks.</span>
             </h1>
-
-            <p class="text-lg md:text-xl text-neutral-500 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
-                Run powerful Small Language Models (SLMs) directly on your users' devices. 
-                <span class="text-white">Zero latency. 100% Privacy.</span> The complete infrastructure for on-device AI.
+            
+            <p class="text-lg text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                The complete infrastructure for On-Device Intelligence. 
+                Select a model, configure the quantization, and ship it to 
+                <span class="text-white font-medium">Web, Mobile, or Desktop</span> instantly.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button onclick="document.getElementById('sdk').scrollIntoView()" class="w-full sm:w-auto px-8 py-4 bg-[var(--accent)] text-white rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_10px_40px_-10px_rgba(255,77,0,0.5)]">
-                    Start Integration
+                <button onclick="document.getElementById('model-zoo').scrollIntoView()" class="w-full sm:w-auto px-8 py-3.5 bg-[var(--accent)] text-white rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_-5px_var(--accent)]">
+                    Explore Models
                 </button>
-                <div class="flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 text-sm font-mono text-neutral-400">
-                    <span class="text-[var(--accent)]">$</span> npm install @slyos/sdk
+                <div class="flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-400">
+                    <span>$ npm install @slyos/sdk</span>
+                    <button class="hover:text-white"><i class="ph ph-copy"></i></button>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="px-4 pb-32">
-        <div class="max-w-6xl mx-auto relative group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-[var(--accent)] to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-            
-            <div class="relative glass-panel rounded-xl overflow-hidden shadow-2xl">
-                <div class="h-8 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 gap-2">
-                    <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
-                    <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
-                    <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
-                    <div class="ml-auto text-[10px] text-neutral-600 font-mono">dashboard.slyos.io</div>
+    <div class="border-y border-white/5 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto px-6 py-8 flex flex-wrap justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            <div class="flex items-center gap-3">
+                <i class="ph-fill ph-globe text-2xl"></i>
+                <div class="text-left">
+                    <div class="text-xs font-bold text-white">WebGPU</div>
+                    <div class="text-[10px] text-green-500 mono">● LIVE</div>
                 </div>
-                <img src="./demo.png" alt="SlyOS Dashboard Interface" class="w-full h-auto object-cover opacity-90">
+            </div>
+            <div class="flex items-center gap-3">
+                <i class="ph-fill ph-linux-logo text-2xl"></i>
+                <div class="text-left">
+                    <div class="text-xs font-bold text-white">Ollama / Linux</div>
+                    <div class="text-[10px] text-green-500 mono">● LIVE</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 opacity-50">
+                <i class="ph-fill ph-apple-logo text-2xl"></i>
+                <div class="text-left">
+                    <div class="text-xs font-bold text-white">iOS / macOS</div>
+                    <div class="text-[10px] text-neutral-500 mono">COMING Q2</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 opacity-50">
+                <i class="ph-fill ph-android-logo text-2xl"></i>
+                <div class="text-left">
+                    <div class="text-xs font-bold text-white">Android</div>
+                    <div class="text-[10px] text-neutral-500 mono">COMING Q2</div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="how-it-works" class="py-24 px-6 border-t border-white/5 bg-black/40">
+    <section id="workflow" class="py-24 px-6 relative">
         <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-panel p-8 rounded-2xl hover:border-[var(--accent)] transition-colors duration-300">
-                    <div class="w-12 h-12 rounded-lg bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">From zero to inference.</h2>
+                <p class="text-neutral-500">Forget complex Python environments. SlyOS makes it a simple 3-step pipeline.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-12 left-[20%] right-[20%] h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-30 border-t border-dashed border-white/20"></div>
+
+                <div class="relative glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] font-mono font-bold relative z-10 group-hover:scale-110 transition-transform">1</div>
+                    <h3 class="text-lg font-bold mb-2">Select Model</h3>
+                    <p class="text-sm text-neutral-500 mb-4">Choose from our curated Zoo of 9+ optimized SLMs (Quantum, VoiceCore).</p>
+                    <div class="h-24 bg-black/50 rounded border border-white/5 overflow-hidden relative">
+                        <img src="./demo.png" class="opacity-40 w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center text-[10px] mono text-[var(--accent)]">>> SELECTION_GRID</div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Quantization Engine</h3>
-                    <p class="text-neutral-500 leading-relaxed text-sm">
-                        We automatically optimize models (q4, q5, q8) for specific device hardware. Your iPhone users get CoreML; Android users get TFLite—automatically.
-                    </p>
                 </div>
 
-                <div class="glass-panel p-8 rounded-2xl hover:border-[var(--accent)] transition-colors duration-300">
-                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                <div class="relative glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] font-mono font-bold relative z-10 group-hover:scale-110 transition-transform">2</div>
+                    <h3 class="text-lg font-bold mb-2">Get the SDK</h3>
+                    <p class="text-sm text-neutral-500 mb-4">Install the SlyOS SDK into your Web App, Electron App, or Server.</p>
+                    <div class="bg-[#050505] p-3 rounded border border-white/5 font-mono text-[10px] text-neutral-400">
+                        <span class="text-[var(--accent)]">import</span> { Sly } <span class="text-[var(--accent)]">from</span> '@slyos'<br>
+                        <span class="text-blue-400">await</span> Sly.load('<span class="text-green-400">quantum-360m</span>')
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Fleet Telemetry</h3>
-                    <p class="text-neutral-500 leading-relaxed text-sm">
-                        Track inference latency, tokens-per-second, and battery impact across your entire user base without ever seeing the private prompt data.
-                    </p>
                 </div>
 
-                <div class="glass-panel p-8 rounded-2xl hover:border-[var(--accent)] transition-colors duration-300">
-                    <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div class="relative glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] font-mono font-bold relative z-10 group-hover:scale-110 transition-transform">3</div>
+                    <h3 class="text-lg font-bold mb-2">Deploy & Track</h3>
+                    <p class="text-sm text-neutral-500 mb-4">Users download the model once. You track latency and tokens in real-time.</p>
+                    <div class="flex items-center gap-4 mt-6">
+                        <div class="flex-1">
+                            <div class="text-[10px] uppercase text-neutral-600 font-bold mb-1">Latency</div>
+                            <div class="text-xl font-mono text-white">45<span class="text-sm text-neutral-500">ms</span></div>
+                        </div>
+                        <div class="h-8 w-[1px] bg-white/10"></div>
+                        <div class="flex-1">
+                            <div class="text-[10px] uppercase text-neutral-600 font-bold mb-1">Tokens/s</div>
+                            <div class="text-xl font-mono text-[var(--accent)]">52<span class="text-sm text-neutral-500">t/s</span></div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Hybrid Routing</h3>
-                    <p class="text-neutral-500 leading-relaxed text-sm">
-                        Use local models for 90% of queries. Automatically "burst" to the cloud for complex reasoning tasks using our intelligent router.
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="sdk" class="py-24 px-6 bg-[#050505]">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+    <section id="model-zoo" class="py-24 px-6 bg-[#030303]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">The Model Zoo</h2>
+                    <p class="text-neutral-500">Optimized, quantized, and ready for edge deployment.</p>
+                </div>
+                <div class="flex gap-2 text-xs font-mono">
+                    <span class="px-3 py-1 rounded bg-white/10 text-white cursor-pointer hover:bg-white/20">All</span>
+                    <span class="px-3 py-1 rounded border border-white/10 text-neutral-500 cursor-pointer hover:text-white">Text</span>
+                    <span class="px-3 py-1 rounded border border-white/10 text-neutral-500 cursor-pointer hover:text-white">Voice</span>
+                    <span class="px-3 py-1 rounded border border-white/10 text-neutral-500 cursor-pointer hover:text-white">Code</span>
+                </div>
+            </div>
+
+            <div id="zoo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
             <div class="w-full md:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Lines of code, not <br>server farms.</h2>
-                <p class="text-neutral-500 mb-8">
-                    Stop paying per-token. Distribute the compute to the edge. Our SDK handles the model downloading, caching, and inference loop.
+                <div class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold tracking-widest uppercase mb-6">Developer First</div>
+                <h2 class="text-4xl font-bold mb-6">Complete Telemetry.<br>Zero Privacy Risk.</h2>
+                <p class="text-neutral-400 mb-8 leading-relaxed">
+                    SlyOS gives you the analytics of a cloud API (latency, error rates, token counts) without ever sending the user's prompt to your server.
                 </p>
-                <ul class="space-y-4 text-sm text-neutral-300">
-                    <li class="flex items-center gap-3">
-                        <div class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></div>
-                        Auto-updates models over-the-air (OTA)
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <div class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></div>
-                        Works offline (Airplane Mode ready)
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <div class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></div>
-                        Cross-platform (iOS, Android, React Native)
-                    </li>
-                </ul>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center shrink-0">
+                            <i class="ph ph-shield-check text-green-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-white">Privacy by Architecture</h4>
+                            <p class="text-xs text-neutral-500 mt-1">Inference happens on the NPU/CPU. Data never leaves the device.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center shrink-0">
+                            <i class="ph ph-chart-line-up text-[var(--accent)]"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-white">Full Observability</h4>
+                            <p class="text-xs text-neutral-500 mt-1">See exactly which devices are struggling and which models perform best.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <button onclick="openModal('docs')" class="text-sm font-bold border-b border-[var(--accent)] pb-1 hover:text-[var(--accent)] transition-colors">
+                        Read the Documentation &rarr;
+                    </button>
+                </div>
             </div>
 
             <div class="w-full md:w-1/2">
-                <div class="glass-panel rounded-xl overflow-hidden shadow-2xl border-none">
-                    <div class="bg-[#1e1e1e] px-4 py-3 border-b border-white/5 flex justify-between items-center">
-                        <span class="text-xs text-neutral-500 mono">main.js</span>
-                        <span class="text-[10px] text-green-500 mono">● Connected</span>
+                <div class="glass rounded-xl overflow-hidden shadow-2xl">
+                    <div class="bg-[#151515] px-4 py-3 border-b border-white/5 flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/20"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/20"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/20"></div>
+                        </div>
+                        <span class="text-[10px] text-neutral-500 mono">terminal</span>
                     </div>
-                    <div class="bg-[#0d0d0d] p-6 mono text-xs md:text-sm overflow-x-auto leading-relaxed">
-<pre><code><span class="token-keyword">import</span> { SlyOS } <span class="token-keyword">from</span> <span class="token-string">'@slyos/sdk'</span>;
-
-<span class="token-comment">// 1. Initialize with your specific company key</span>
-<span class="token-keyword">const</span> sly = <span class="token-keyword">new</span> SlyOS({
-  apiKey: <span class="token-string">'sk_live_mcd_99823...'</span>
-});
-
-<span class="token-comment">// 2. Load optimized model (caches automatically)</span>
-<span class="token-keyword">await</span> sly.loadModel(<span class="token-string">'quantum-360m'</span>);
-
-<span class="token-comment">// 3. Run inference locally</span>
-<span class="token-keyword">const</span> response = <span class="token-keyword">await</span> sly.chat({
-  role: <span class="token-string">'user'</span>,
-  content: <span class="token-string">'Summarize this legal PDF...'</span>
-});
-
-console.log(response.latency); <span class="token-comment">// "45ms"</span></code></pre>
+                    <div class="bg-[#0A0A0A] p-6 font-mono text-xs overflow-x-auto leading-loose">
+                        <div class="text-neutral-500"># 1. Install SlyOS</div>
+                        <div class="text-white">$ npm install @slyos/sdk</div>
+                        <br>
+                        <div class="text-neutral-500"># 2. Register Device</div>
+                        <div class="text-white">$ curl -X POST api/devices/register \</div>
+                        <div class="pl-4 text-[var(--accent)]">--header "X-API-KEY: sk_mcd_123"</div>
+                        <br>
+                        <div class="text-neutral-500"># 3. Output</div>
+                        <div class="text-green-400">{</div>
+                        <div class="pl-4 text-green-400">"status": "ready",</div>
+                        <div class="pl-4 text-green-400">"model": "quantum-360m",</div>
+                        <div class="pl-4 text-green-400">"hardware": "WebGPU_Enabled"</div>
+                        <div class="text-green-400">}</div>
                     </div>
                 </div>
             </div>
@@ -276,121 +325,197 @@ console.log(response.latency); <span class="token-comment">// "45ms"</span></cod
 
     <footer class="border-t border-white/5 bg-black py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            
             <div class="flex items-center gap-3 opacity-50 grayscale hover:grayscale-0 transition-all">
                 <img src="./SlyOS_Flame.png" alt="Logo" class="w-6 h-6">
-                <span class="font-bold tracking-tight">SlyOS</span>
+                <span class="font-bold tracking-tight text-white">SlyOS</span>
             </div>
-
-            <div class="flex gap-8 text-xs text-neutral-500 font-mono uppercase tracking-wider">
-                <a href="#" class="hover:text-white transition-colors">Documentation</a>
-                <a href="#" class="hover:text-white transition-colors">Status</a>
-                <button onclick="openModal('privacy')" class="hover:text-white transition-colors uppercase">Privacy Policy</button>
-                <button onclick="openModal('terms')" class="hover:text-white transition-colors uppercase">Terms</button>
+            <div class="flex gap-8 text-[10px] text-neutral-500 font-mono uppercase tracking-wider">
+                <button onclick="openModal('privacy')" class="hover:text-white">Privacy Policy</button>
+                <button onclick="openModal('terms')" class="hover:text-white">Terms of Service</button>
+                <a href="mailto:support@slyos.io" class="hover:text-white">Contact</a>
             </div>
-
-            <div class="text-xs text-neutral-700">
-                &copy; 2026 SlyOS Inc. San Francisco.
+            <div class="text-[10px] text-neutral-700 font-mono">
+                &copy; 2026 SlyOS Inc. US-EAST-2.
             </div>
         </div>
     </footer>
 
-    <div id="privacy" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-        <div class="modal-content glass-panel w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl p-8 md:p-12 relative bg-[#0a0a0a]">
-            <button onclick="closeModal('privacy')" class="absolute top-6 right-6 text-neutral-500 hover:text-white text-2xl">&times;</button>
-            
-            <h2 class="text-3xl font-bold mb-2">Privacy Policy</h2>
-            <p class="text-neutral-500 text-sm mb-8">Last Updated: January 28, 2026</p>
-
-            <div class="space-y-6 text-neutral-300 text-sm leading-relaxed">
-                <p>At SlyOS ("we", "our"), we believe the most secure data is data we never touch. Our architecture is designed to keep user prompts and model inference strictly on the end-user's device.</p>
-
-                <h4 class="text-white font-bold text-base">1. Data We Do Not Collect</h4>
-                <p>We do not—and technically cannot—access the content of the conversations (prompts and completions) generated on the device using the SlyOS SDK. All inference happens locally on the hardware (NPU/GPU/CPU).</p>
-
-                <h4 class="text-white font-bold text-base">2. Telemetry Data</h4>
-                <p>To provide dashboard analytics to our customers (the Application Providers), the SDK sends minimal technical telemetry to our servers in AWS (us-east-2), including:</p>
-                <ul class="list-disc pl-5 text-neutral-500 space-y-1">
-                    <li>Device performance metrics (Latency, Token generation speed).</li>
-                    <li>Hardware specifications (Device model, RAM, OS version).</li>
-                    <li>Error logs related to model downloading or loading.</li>
+    <div id="modal-backdrop" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeAllModals()">
+        
+        <div id="modal-privacy" class="modal-content glass bg-[#0a0a0a] w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl p-8 hidden relative" onclick="event.stopPropagation()">
+            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white">&times;</button>
+            <h2 class="text-2xl font-bold mb-6">Privacy Policy</h2>
+            <div class="prose prose-invert prose-sm text-neutral-400">
+                <p><strong>Effective Date:</strong> Jan 28, 2026</p>
+                <p>SlyOS is designed with a "Zero-Knowledge" architecture. We provide the infrastructure (SDKs, Model Weights, Telemetry APIs) but we do not process the actual inputs (prompts) or outputs (completions) of your users.</p>
+                <h4 class="text-white mt-4 font-bold">Data Collection</h4>
+                <ul class="list-disc pl-4 space-y-2">
+                    <li><strong>Device Specs:</strong> RAM, GPU type, and OS version to optimize model selection.</li>
+                    <li><strong>Performance Metrics:</strong> Latency (ms), Tokens per second (t/s), and Error rates.</li>
                 </ul>
-
-                <h4 class="text-white font-bold text-base">3. Infrastructure Security</h4>
-                <p>Our backend is hosted on AWS Elastic Beanstalk with strictly configured VPCs. Database connections are encrypted via TLS. We do not sell or share telemetry data with third parties.</p>
-            </div>
-            
-            <div class="mt-8 pt-8 border-t border-white/10 flex justify-end">
-                <button onclick="closeModal('privacy')" class="px-6 py-2 bg-white text-black font-bold rounded-full text-sm hover:bg-[var(--accent)] hover:text-white transition-colors">Understood</button>
+                <h4 class="text-white mt-4 font-bold">No Content Access</h4>
+                <p>Inference runs locally on the end-user's hardware. SlyOS servers never receive the text data generated by the models.</p>
             </div>
         </div>
-    </div>
 
-    <div id="terms" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-        <div class="modal-content glass-panel w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl p-8 md:p-12 relative bg-[#0a0a0a]">
-            <button onclick="closeModal('terms')" class="absolute top-6 right-6 text-neutral-500 hover:text-white text-2xl">&times;</button>
-            
-            <h2 class="text-3xl font-bold mb-2">Terms of Service</h2>
-            <p class="text-neutral-500 text-sm mb-8">Effective Date: January 28, 2026</p>
-
-            <div class="space-y-6 text-neutral-300 text-sm leading-relaxed">
-                <p>By downloading, installing, or using the SlyOS SDK ("Software"), you agree to these terms.</p>
-
-                <h4 class="text-white font-bold text-base">1. License Grant</h4>
-                <p>SlyOS grants you a limited, non-exclusive, non-transferable license to integrate the SDK into your applications for the purpose of running on-device AI models. You may not reverse engineer the SDK binary or attempt to spoof telemetry data.</p>
-
-                <h4 class="text-white font-bold text-base">2. Acceptable Use</h4>
-                <p>You agree not to use SlyOS infrastructure to deploy models that generate illegal content, hate speech, or malicious code. We reserve the right to revoke API keys for violations.</p>
-
-                <h4 class="text-white font-bold text-base">3. Model Licensing</h4>
-                <p>Models provided via the SlyOS Model Zoo (e.g., Llama, SmolLM) are subject to their respective original licenses (Apache 2.0, MIT, etc.). You are responsible for complying with these licenses.</p>
-
-                <h4 class="text-white font-bold text-base">4. Liability</h4>
-                <p>The Software is provided "AS IS". SlyOS Inc. is not liable for hardware overheating, battery drain, or incorrect outputs generated by the AI models.</p>
-            </div>
-            
-            <div class="mt-8 pt-8 border-t border-white/10 flex justify-end">
-                <button onclick="closeModal('terms')" class="px-6 py-2 bg-white text-black font-bold rounded-full text-sm hover:bg-[var(--accent)] hover:text-white transition-colors">I Agree</button>
+        <div id="modal-terms" class="modal-content glass bg-[#0a0a0a] w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl p-8 hidden relative" onclick="event.stopPropagation()">
+            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white">&times;</button>
+            <h2 class="text-2xl font-bold mb-6">Terms of Service</h2>
+            <div class="prose prose-invert prose-sm text-neutral-400">
+                <p>By using the SlyOS SDK, you agree to the following:</p>
+                <ol class="list-decimal pl-4 space-y-2">
+                    <li><strong>Usage:</strong> You are responsible for the content generated by the models in your application.</li>
+                    <li><strong>License:</strong> SlyOS grants a non-exclusive license to use the SDK. You may not reverse-engineer the binary quantization engine.</li>
+                    <li><strong>Liability:</strong> SlyOS is not liable for device overheating or battery drain caused by excessive inference loops implemented by the developer.</li>
+                </ol>
             </div>
         </div>
+
+        <div id="modal-docs" class="modal-content glass bg-[#0a0a0a] w-full max-w-4xl h-[80vh] rounded-2xl overflow-hidden hidden relative flex flex-col" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between p-6 border-b border-white/10 bg-[#050505]">
+                <div class="flex items-center gap-3">
+                    <i class="ph ph-book text-[var(--accent)]"></i>
+                    <span class="font-bold">SlyOS Documentation</span>
+                    <span class="text-xs bg-white/10 px-2 py-0.5 rounded text-neutral-400">v1.0.2</span>
+                </div>
+                <button onclick="closeAllModals()" class="text-neutral-500 hover:text-white"><i class="ph ph-x text-xl"></i></button>
+            </div>
+            <div class="flex-1 flex overflow-hidden">
+                <div class="w-64 bg-[#050505] border-r border-white/5 p-6 space-y-4 hidden md:block">
+                    <div class="text-xs font-bold text-neutral-600 uppercase">Getting Started</div>
+                    <div class="text-sm text-[var(--accent)]">Installation</div>
+                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">API Keys</div>
+                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">Model List</div>
+                    <div class="mt-6 text-xs font-bold text-neutral-600 uppercase">Guides</div>
+                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">React Integration</div>
+                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">Ollama Bridge</div>
+                </div>
+                <div class="flex-1 p-8 overflow-y-auto bg-[#0a0a0a]">
+                    <h1 class="text-3xl font-bold mb-4">Installation</h1>
+                    <p class="text-neutral-400 mb-6">Install the SlyOS SDK to begin deploying models to the edge.</p>
+                    <div class="bg-black p-4 rounded border border-white/10 font-mono text-sm mb-6">
+                        $ npm install @slyos/sdk
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Quick Start</h3>
+                    <p class="text-neutral-400 mb-4">Initialize the client with your organization key.</p>
+                    <div class="bg-black p-4 rounded border border-white/10 font-mono text-xs leading-loose text-neutral-300">
+                        <span class="text-[var(--accent)]">import</span> { Sly } <span class="text-[var(--accent)]">from</span> '@slyos/sdk';<br><br>
+                        <span class="text-purple-400">const</span> sly = <span class="text-purple-400">new</span> Sly({<br>
+                        &nbsp;&nbsp;apiKey: <span class="text-green-400">'sk_live_...'</span><br>
+                        });<br><br>
+                        <span class="text-neutral-500">// Downloads and caches the model automatically</span><br>
+                        <span class="text-blue-400">await</span> sly.load(<span class="text-green-400">'quantum-360m'</span>);
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-status" class="modal-content glass bg-[#0a0a0a] w-full max-w-lg rounded-2xl p-8 hidden relative" onclick="event.stopPropagation()">
+            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white">&times;</button>
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                System Status
+            </h2>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                    <span class="text-sm">API (us-east-2)</span>
+                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
+                </div>
+                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                    <span class="text-sm">Model CDN (Global)</span>
+                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
+                </div>
+                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                    <span class="text-sm">Dashboard</span>
+                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
+                </div>
+                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                    <span class="text-sm">Payment Gateway</span>
+                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-xs text-neutral-500">
+                Last updated: Just now
+            </div>
+        </div>
+
     </div>
 
     <script>
+        // Data: Model Zoo (From your screenshot/docs)
+        const models = [
+            { id: 'quantum-360m', name: 'Quantum 360M', type: 'Text', size: '200MB', ram: '512MB', desc: 'General chat, Q&A, content generation. Best for web.', recommended: true },
+            { id: 'voicecore-base', name: 'VoiceCore Base', type: 'Voice', size: '256MB', ram: '256MB', desc: 'Real-time transcription. 0.3x real-time factor.', recommended: true },
+            { id: 'quantum-135m', name: 'Quantum 135M', type: 'Text', size: '80MB', ram: '250MB', desc: 'Ultra-lightweight. Autocomplete & classification.' },
+            { id: 'quantum-3b', name: 'Quantum 3B', type: 'Text', size: '1.7GB', ram: '4GB', desc: 'Advanced reasoning, Llama-3.2 based.' },
+            { id: 'voicecore-tiny', name: 'VoiceCore Tiny', type: 'Voice', size: '128MB', ram: '128MB', desc: 'Command word recognition & simple dictation.' },
+            { id: 'quantum-code-3b', name: 'Quantum Code 3B', type: 'Code', size: '1.8GB', ram: '4GB', desc: 'Code completion, debugging, technical writing.' },
+            { id: 'quantum-1.7b', name: 'Quantum 1.7B', type: 'Text', size: '1GB', ram: '2GB', desc: 'Balanced reasoning & creative writing.' },
+            { id: 'quantum-8b', name: 'Quantum 8B', type: 'Text', size: '4.5GB', ram: '8GB', desc: 'Desktop class performance. Complex analysis.' },
+            { id: 'voicecore-small', name: 'VoiceCore Small', type: 'Voice', size: '512MB', ram: '512MB', desc: 'High-fidelity interview transcription.' }
+        ];
+
+        // Render Model Grid
+        const zooContainer = document.getElementById('zoo-container');
+        models.forEach(model => {
+            const card = document.createElement('div');
+            card.className = `glass p-6 rounded-xl border-white/5 card-hover relative group`;
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div class="px-2 py-1 rounded bg-white/10 text-[10px] uppercase font-bold text-neutral-300">${model.type}</div>
+                    ${model.recommended ? '<div class="px-2 py-1 rounded bg-[var(--accent)]/20 text-[var(--accent)] text-[10px] uppercase font-bold flex items-center gap-1"><i class="ph-fill ph-star"></i> Recommended</div>' : ''}
+                </div>
+                <h3 class="text-xl font-bold mb-1">${model.name}</h3>
+                <div class="text-xs text-neutral-500 font-mono mb-4">${model.id}</div>
+                <p class="text-sm text-neutral-400 mb-6 h-10 line-clamp-2">${model.desc}</p>
+                <div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
+                    <div>
+                        <div class="text-[10px] text-neutral-600 uppercase font-bold">Size</div>
+                        <div class="text-sm font-mono text-white">${model.size}</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-neutral-600 uppercase font-bold">Min RAM</div>
+                        <div class="text-sm font-mono text-white">${model.ram}</div>
+                    </div>
+                </div>
+                <button class="w-full mt-4 py-2 rounded bg-white/5 text-xs font-bold hover:bg-white text-white hover:text-black transition-colors">
+                    Configure &rarr;
+                </button>
+            `;
+            zooContainer.appendChild(card);
+        });
+
         // Modal Logic
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        const backdrop = document.getElementById('modal-backdrop');
+
+        function openModal(type) {
+            backdrop.classList.remove('hidden');
+            backdrop.classList.add('flex');
+            // Small delay to allow display:flex to apply before opacity transition
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+            }, 10);
+            
+            document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
+            
+            const target = document.getElementById(`modal-${type}`);
+            if(target) target.classList.remove('hidden');
+            
+            document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('active');
+        function closeAllModals() {
+            backdrop.classList.add('opacity-0');
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+                backdrop.classList.remove('flex');
+                document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
+            }, 300);
             document.body.style.overflow = '';
         }
-
-        // Close on clicking outside
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-
-        // Smooth Scroll handling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>
