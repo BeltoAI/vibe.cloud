@@ -1,1319 +1,395 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>SlyOS | The Edge Intelligence Infrastructure</title>
+    <meta name="description" content="Deploy, manage, and optimize on-device Small Language Models (SLMs). SlyOS is the complete infrastructure for local AI with zero latency and total privacy.">
+    <meta name="keywords" content="Edge AI, On-Device LLM, SLM, AI Infrastructure, SlyOS, Local Inference, SDK">
+    <meta name="author" content="SlyOS">
+    <meta name="theme-color" content="#FF4D00">
 
-  <!-- Primary SEO -->
-  <title>Vibe Cloud | Governed AI Deployment in Minutes</title>
-  <meta name="description" content="Vibe Cloud is a policy enforcement gateway for AI deployments. Define approved models, regions, budgets, logging, and data rules once — ship production AI endpoints in minutes with deploy-time validation and runtime enforcement." />
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-  <link rel="canonical" href="https://belto.world/" />
-  <meta name="theme-color" content="#000000" />
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SlyOS - Intelligence at the Edge">
+    <meta property="og:description" content="The infrastructure for deploying local AI models to millions of devices instantly.">
+    <meta property="og:image" content="./demo.png">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Vibe Cloud" />
-  <meta property="og:title" content="Vibe Cloud | Governed AI Deployment in Minutes" />
-  <meta property="og:description" content="Define policies once. Deploy production AI endpoints in minutes. Enforce budgets, data rules, logging, and region compliance at deploy-time and runtime." />
-  <meta property="og:url" content="https://belto.world/" />
-  <meta property="og:image" content="https://belto.world/og.png" />
-  <meta property="og:image:alt" content="Vibe Cloud: prompt-to-API AI deployment with policy enforcement" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vibe Cloud | Governed AI Deployment in Minutes" />
-  <meta name="twitter:description" content="Policy enforcement gateway for AI deployments. Deploy-time validation + runtime enforcement across clouds." />
-  <meta name="twitter:image" content="https://belto.world/og.png" />
-
-  <!-- Favicons -->
-  <link rel="icon" href="SlyOS_Flame.png" />
-  <link rel="apple-touch-icon" href="SlyOS_Flame.png" />
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
-<!-- PWA / Android -->
-<link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#000000">
-
-
-  <!-- Structured Data: Organization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Vibe Cloud",
-    "url": "https://belto.world/",
-    "email": "support@belto.world",
-    "description": "Vibe Cloud is a policy enforcement gateway for AI deployments, providing deploy-time validation and runtime enforcement for models, regions, budgets, logging, and data rules across cloud environments.",
-    "logo": "https://belto.world/logo.png",
-    "sameAs": []
-  }
-  </script>
-
-  <!-- Structured Data: Software Application -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Vibe Cloud",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Web",
-    "url": "https://belto.world/",
-    "description": "Policy enforcement gateway for AI deployments. Define approved models, regions, budgets, logging and data rules once, then deploy governed production AI endpoints in minutes with deploy-time validation and runtime enforcement.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-  </script>
-
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --gold: #C9A87C;
-            --gold-dark: #B8956A;
-            --black: #000000;
-            --surface: #0a0a0a;
-            --text: #ffffff;
-            --text-secondary: #b8b8b8;
-            --text-muted: #6a6a6a;
-            
-            /* Vibe Coder Colors */
-            --vibe-purple: #a78bfa;
-            --vibe-pink: #ec4899;
-            --vibe-blue: #3b82f6;
-            --vibe-green: #10b981;
-            --vibe-orange: #f59e0b;
-            --vibe-cyan: #06b6d4;
+            --bg-deep: #030303;
+            --accent: #FF4D00; /* Matching the flame */
+            --glass: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ECECEC;
+            --text-muted: #888888;
         }
 
         body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            transition: background 0.3s ease;
         }
 
-        body.vibe-mode {
-            background: linear-gradient(135deg, #1a0b2e 0%, #0f0a1e 50%, #1a0b2e 100%);
-            background-size: 400% 400%;
-            animation: vibeGradient 15s ease infinite;
-        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
 
-        @keyframes vibeGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* COMING SOON MODAL */
-        .modal-overlay {
-            display: none;
+        /* Subtle Grain Overlay */
+        .noise {
             position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-overlay.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--surface);
-            border: 2px solid var(--gold);
-            border-radius: 16px;
-            padding: 48px;
-            max-width: 500px;
-            text-align: center;
-        }
-
-        .modal-content h2 {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 16px;
-        }
-
-        .modal-content p {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            font-size: 1.1rem;
-        }
-
-        .modal-close {
-            padding: 14px 32px;
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(201, 168, 124, 0.1);
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.3rem;
-            font-weight: 300;
-            color: var(--gold);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .mode-switch {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--surface);
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(201, 168, 124, 0.2);
-        }
-
-        body.vibe-mode .mode-switch {
-            background: rgba(167, 139, 250, 0.1);
-            border-color: var(--vibe-purple);
-        }
-
-        .mode-btn {
-            padding: 8px 16px;
-            background: transparent;
-            color: var(--text-muted);
-            border: none;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .mode-btn.active {
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        body.vibe-mode .mode-btn.active {
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-            color: white;
-        }
-
-        .highlight {
-            color: var(--gold);
-        }
-
-        body.vibe-mode .highlight {
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-cta {
-            padding: 10px 24px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--black);
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.85rem;
-        }
-
-        /* HERO */
-        .hero {
-            padding: 160px 60px 100px 60px;
-            text-align: center;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(ellipse at top, rgba(201, 168, 124, 0.08) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            max-width: 1000px;
-        }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -0.03em;
-        }
-
-        .hero-subtitle {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-            font-weight: 300;
-        }
-
-        .highlight {
-            color: var(--gold);
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-bottom: 60px;
-        }
-
-        .btn {
-            padding: 16px 32px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--black);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(201, 168, 124, 0.4);
-        }
-
-        body.vibe-mode .btn-primary {
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-        }
-
-        body.vibe-mode .btn-primary:hover {
-            box-shadow: 0 12px 32px rgba(167, 139, 250, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--gold);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(201, 168, 124, 0.1);
-        }
-
-        body.vibe-mode .btn-secondary {
-            border-color: var(--vibe-purple);
-            color: var(--vibe-purple);
-        }
-
-        body.vibe-mode .btn-secondary:hover {
-            background: rgba(167, 139, 250, 0.1);
-        }
-
-        /* STATS */
-        .stats {
-            display: flex;
-            gap: 60px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        body.vibe-mode .stat-number {
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--gold);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(201, 168, 124, 0.1);
-        }
-
-        /* STATS */
-        .stats {
-            display: flex;
-            gap: 60px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 100px 60px;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 60px auto;
-        }
-
-        .section-label {
-            font-size: 0.85rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        /* HOW IT WORKS */
-        .how-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .how-step {
-            text-align: center;
-            padding: 40px 24px;
-        }
-
-        .step-illustration {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 32px auto;
-            background: linear-gradient(135deg, rgba(201, 168, 124, 0.1) 0%, rgba(201, 168, 124, 0.05) 100%);
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-
-        body.vibe-mode .how-step:nth-child(1) .step-illustration {
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(236, 72, 153, 0.1));
-            border-color: var(--vibe-purple);
-            color: var(--vibe-purple);
-        }
-
-        body.vibe-mode .how-step:nth-child(2) .step-illustration {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.1));
-            border-color: var(--vibe-blue);
-            color: var(--vibe-cyan);
-        }
-
-        body.vibe-mode .how-step:nth-child(3) .step-illustration {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(245, 158, 11, 0.1));
-            border-color: var(--vibe-green);
-            color: var(--vibe-green);
-        }
-
-        .how-step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .how-step p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* DEMO SECTION */
-        .demo {
-            background: var(--surface);
-        }
-
-        .demo-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .demo-image {
-            width: 100%;
-            border: 2px solid var(--gold);
-            border-radius: 16px;
-            background: var(--black);
-            box-shadow: 0 20px 60px rgba(201, 168, 124, 0.2);
-            overflow: hidden;
-        }
-
-        .demo-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .demo-placeholder {
-            aspect-ratio: 16/9;
-            background: var(--black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 20px;
-            border: 2px dashed rgba(201, 168, 124, 0.3);
-            border-radius: 16px;
-        }
-
-        .demo-placeholder svg {
-            width: 80px;
-            height: 80px;
-            stroke: var(--gold);
-        }
-
-        .demo-placeholder span {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        /* FEATURES */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--surface);
-            border: 1px solid rgba(201, 168, 124, 0.2);
-            border-radius: 16px;
-            padding: 40px 32px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(201, 168, 124, 0.15);
-        }
-
-        body.vibe-mode .feature-card {
-            border-color: rgba(167, 139, 250, 0.3);
-            background: rgba(10, 10, 10, 0.5);
-        }
-
-        body.vibe-mode .feature-card:hover {
-            border-color: var(--vibe-purple);
-            box-shadow: 0 12px 32px rgba(167, 139, 250, 0.3);
-        }
-
-        body.vibe-mode .feature-card:nth-child(1) .feature-illustration {
-            border-color: var(--vibe-purple);
-            background: rgba(167, 139, 250, 0.1);
-        }
-
-        body.vibe-mode .feature-card:nth-child(2) .feature-illustration {
-            border-color: var(--vibe-pink);
-            background: rgba(236, 72, 153, 0.1);
-        }
-
-        body.vibe-mode .feature-card:nth-child(3) .feature-illustration {
-            border-color: var(--vibe-blue);
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        body.vibe-mode .feature-card:nth-child(4) .feature-illustration {
-            border-color: var(--vibe-green);
-            background: rgba(16, 185, 129, 0.1);
-        }
-
-        body.vibe-mode .feature-card:nth-child(5) .feature-illustration {
-            border-color: var(--vibe-orange);
-            background: rgba(245, 158, 11, 0.1);
-        }
-
-        body.vibe-mode .feature-card:nth-child(6) .feature-illustration {
-            border-color: var(--vibe-cyan);
-            background: rgba(6, 182, 212, 0.1);
-        }
-
-        body.vibe-mode .feature-card:nth-child(1) .feature-illustration svg {
-            stroke: var(--vibe-purple);
-        }
-
-        body.vibe-mode .feature-card:nth-child(2) .feature-illustration svg {
-            stroke: var(--vibe-pink);
-        }
-
-        body.vibe-mode .feature-card:nth-child(3) .feature-illustration svg {
-            stroke: var(--vibe-blue);
-        }
-
-        body.vibe-mode .feature-card:nth-child(4) .feature-illustration svg {
-            stroke: var(--vibe-green);
-        }
-
-        body.vibe-mode .feature-card:nth-child(5) .feature-illustration svg {
-            stroke: var(--vibe-orange);
-        }
-
-        body.vibe-mode .feature-card:nth-child(6) .feature-illustration svg {
-            stroke: var(--vibe-cyan);
-        }
-
-        .feature-illustration {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px auto;
-            background: linear-gradient(135deg, rgba(201, 168, 124, 0.15) 0%, rgba(201, 168, 124, 0.05) 100%);
-            border: 2px solid var(--gold);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .feature-illustration svg {
-            width: 40px;
-            height: 40px;
-            stroke: var(--gold);
-        }
-
-        .feature-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* PRICING (Vibe Coders Only) */
-        .pricing {
-            display: none;
-        }
-
-        body.vibe-mode .pricing {
-            display: block;
-            background: var(--surface);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: rgba(10, 10, 10, 0.5);
-            border: 2px solid rgba(167, 139, 250, 0.3);
-            border-radius: 20px;
-            padding: 48px 40px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            border-color: var(--vibe-purple);
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(167, 139, 250, 0.3);
-        }
-
-        .pricing-card.popular {
-            border-color: var(--vibe-pink);
-            transform: scale(1.05);
-        }
-
-        .pricing-badge {
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bW9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+');
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Ambient Glows */
+        .glow-spot {
             position: absolute;
-            top: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 77, 0, 0.08) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .pricing-tier {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* Modal Transitions */
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: translateY(20px);
+            transition: transform 0.3s ease-out;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
         }
 
-        .pricing-amount {
-            font-size: 4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-
-        .pricing-period {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 32px;
-        }
-
-        .pricing-features {
-            text-align: left;
-            margin-bottom: 32px;
-        }
-
-        .pricing-feature {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(167, 139, 250, 0.2);
-            font-size: 1rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .pricing-feature:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-check {
-            color: var(--vibe-green);
-            font-weight: 700;
-        }
-
-        .pricing-cta {
-            width: 100%;
-            padding: 16px 32px;
-            background: linear-gradient(135deg, var(--vibe-purple), var(--vibe-pink));
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-
-        .pricing-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.5);
-        }
-
-        /* CTA SECTION */
-        .cta-section {
-            background: radial-gradient(ellipse at center, rgba(201, 168, 124, 0.15) 0%, transparent 60%);
-            text-align: center;
-            padding: 120px 60px;
-        }
-
-        /* FOOTER */
-        footer {
-            background: var(--surface);
-            border-top: 1px solid rgba(201, 168, 124, 0.1);
-            padding: 60px 60px 40px 60px;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--gold);
-            letter-spacing: 0.15em;
-            margin-bottom: 24px;
-            text-transform: uppercase;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 32px;
-            justify-content: center;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .footer-bottom {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            padding-top: 32px;
-            border-top: 1px solid rgba(201, 168, 124, 0.1);
-        }
-
-        /* CONTENT SWITCHER */
-        .tech-content,
-        .non-tech-content {
-            display: none;
-        }
-
-        .tech-content.active,
-        .non-tech-content.active {
-            display: block;
-        }
-
-        /* MOBILE */
-        @media (max-width: 968px) {
-            nav {
-                padding: 16px 24px;
-            }
-
-            .mode-switch {
-                /* Keep visible on mobile */
-                gap: 8px;
-            }
-
-            .mode-btn {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 60px 24px;
-            }
-
-            .how-grid,
-            .features-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                gap: 32px;
-            }
-        }
+        /* Syntax Highlighting Mockup */
+        .token-keyword { color: #ff79c6; }
+        .token-string { color: #f1fa8c; }
+        .token-function { color: #8be9fd; }
+        .token-comment { color: #6272a4; }
     </style>
 </head>
-<body>
-    <!-- COMING SOON MODAL -->
-    <div class="modal-overlay" id="comingSoonModal">
-        <div class="modal-content">
-            <h2>Coming Soon</h2>
-            <p>This feature is currently under development. Check back soon!</p>
-            <button class="modal-close" onclick="closeModal()">Got It</button>
-        </div>
-    </div>
+<body class="relative">
 
-    <!-- NAVIGATION -->
-    <nav>
-        <a href="#" class="logo">VIBE CLOUD</a>
-        <div class="nav-right">
-            <div class="mode-switch">
-                <button class="mode-btn active" id="techBtn" onclick="switchMode('tech')">Technical</button>
-                <button class="mode-btn" id="nonTechBtn" onclick="switchMode('non-tech')">Simple</button>
+    <div class="noise"></div>
+
+    <div class="glow-spot top-[-200px] left-1/2 -translate-x-1/2"></div>
+    <div class="glow-spot bottom-0 right-0 opacity-50"></div>
+
+    <nav class="fixed top-0 w-full z-40 border-b border-white/5 bg-[#030303]/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="./SlyOS_Flame.png" alt="SlyOS Logo" class="w-8 h-8 group-hover:drop-shadow-[0_0_10px_rgba(255,77,0,0.5)] transition-all">
+                <span class="text-xl font-bold tracking-tighter uppercase text-white">SlyOS</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-400">
+                <a href="#how-it-works" class="hover:text-white transition-colors">Architecture</a>
+                <a href="#sdk" class="hover:text-white transition-colors">SDK</a>
+                <a href="#models" class="hover:text-white transition-colors">Model Zoo</a>
             </div>
-            <a href="mailto:support@belto.world?subject=Demo Request" class="nav-cta">Get Demo</a>
+
+            <div class="flex items-center gap-4">
+                <a href="http://slyos-prod.eba-qjz3cmgq.us-east-2.elasticbeanstalk.com/api/auth/login" 
+                   class="mono text-xs text-neutral-400 hover:text-white transition-colors hidden sm:block">
+                    // CONSOLE_LOGIN
+                </a>
+                <a href="#contact" class="px-5 py-2 bg-white text-black font-semibold text-sm rounded-full hover:bg-[var(--accent)] hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                    Get Access
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="tech-content active">
-                <h1>Deploy AI Infrastructure in <span class="highlight">Minutes</span></h1>
-                <p class="hero-subtitle">
-                    Policy enforcement gateway. Deploy-time controls + runtime enforcement. Policy-compliant by default.
-                </p>
-            </div>
-            <div class="non-tech-content">
-                <h1>Cloud Is Too Hard. <span class="highlight">Just Prompt It.</span></h1>
-                <p class="hero-subtitle">
-                    Describe what you need. Get your API endpoint instantly. No DevOps degree required.
-                </p>
-            </div>
-            
-            <div class="cta-group">
-                <a href="mailto:support@belto.world?subject=Demo Request&body=I'd like to see a demo of Vibe Cloud." class="btn btn-primary">Book a Demo</a>
-                <button class="btn btn-secondary" onclick="scrollToDemo()">Watch Demo</button>
-            </div>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">10 min</div>
-                    <div class="stat-label">Deploy Time</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Compliant</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">Zero</div>
-                    <div class="stat-label">Manual Work</div>
+    <header class="relative pt-40 pb-20 px-6 overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-center mb-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest font-bold text-[var(--accent)] animate-fade-in-up">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
+                    </span>
+                    Infrastructure v1.0 Live
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- HOW IT WORKS -->
-    <section>
-        <div class="section-header">
-            <div class="section-label">How It Works</div>
-            <div class="tech-content active">
-                <h2>Three Steps to Production</h2>
-                <p class="section-subtitle">From policy definition to live infrastructure in under 10 minutes</p>
-            </div>
-            <div class="non-tech-content">
-                <h2>So Easy It's Basically Magic</h2>
-                <p class="section-subtitle">Three steps. Zero stress. All vibes.</p>
-            </div>
-        </div>
-        
-        <div class="how-grid">
-            <div class="how-step">
-                <div class="step-illustration">1</div>
-                <div class="tech-content active">
-                    <h3>Define Policies</h3>
-                    <p>Set allowed models, regions, budgets, and security rules in your repo</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Tell Us Your Limits</h3>
-                    <p>How much you wanna spend? Where's your data allowed? Set it once and forget it.</p>
-                </div>
-            </div>
-            
-            <div class="how-step">
-                <div class="step-illustration">2</div>
-                <div class="tech-content active">
-                    <h3>Submit Spec</h3>
-                    <p>Describe what you need. Structured intent, deterministic compilation</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Prompt Your Infrastructure</h3>
-                    <p>"GPT-4 endpoint for EU customers with PII filtering" → Boom, API ready.</p>
-                </div>
-            </div>
-            
-            <div class="how-step">
-                <div class="step-illustration">3</div>
-                <div class="tech-content active">
-                    <h3>Deploy + Enforce</h3>
-                    <p>Automatic provisioning with deploy-time and runtime enforcement</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Your API Is Live</h3>
-                    <p>Get your endpoint URL. Start calling it. Secure, compliant, done.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h1 class="text-5xl md:text-8xl font-bold tracking-tight text-center leading-[0.95] mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">
+                INTELLIGENCE<br>AT THE EDGE.
+            </h1>
 
-    <!-- DEMO -->
-<section class="demo" id="demo">
-  <div class="section-header">
-    <div class="section-label">See It In Action</div>
-    <h2>Deploy AI in Seconds</h2>
-    <p class="section-subtitle">
-      From intent to a governed production API — no tickets, no reviews.
-    </p>
-  </div>
-
-  <div class="demo-container">
-    <div class="demo-image">
-      <img
-        src="demo.png"
-        alt="Vibe Cloud live AI deployment demo showing prompt-to-API flow"
-        loading="lazy"
-      />
-    </div>
-  </div>
-</section>
-
-    <!-- FEATURES -->
-    <section>
-        <div class="section-header">
-            <div class="section-label">What You Get</div>
-            <div class="tech-content active">
-                <h2>Comprehensive Policy Enforcement</h2>
-                <p class="section-subtitle">Deploy-time validation and runtime controls</p>
-            </div>
-            <div class="non-tech-content">
-                <h2>Prompt Cloud Infrastructure Into Existence</h2>
-                <p class="section-subtitle">Get compliant API endpoints without touching YAML or Terraform.</p>
-            </div>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-illustration">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    </svg>
-                </div>
-                <div class="tech-content active">
-                    <h3>Policy-Compliant</h3>
-                    <p>Every deployment validated against your security and compliance rules</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>No Oopsies Allowed</h3>
-                    <p>Can't accidentally deploy something that breaks the rules. We got you.</p>
-                </div>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-illustration">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
-                </div>
-                <div class="tech-content active">
-                    <h3>Budget Enforcement</h3>
-                    <p>Hard caps on spending. Auto-kill on budget violations</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Budget Boss Mode</h3>
-                    <p>Hit your spending limit? We auto-shut it down. No surprise $10K bills.</p>
-                </div>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-illustration">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
-                <div class="tech-content active">
-                    <h3>Full Audit Trail</h3>
-                    <p>Every API call logged. Complete forensics for compliance</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Receipts for Everything</h3>
-                    <p>Every API call logged. If audit season comes, you're covered.</p>
-                </div>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-illustration">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                    </svg>
-                </div>
-                <div class="tech-content active">
-                    <h3>Data Protection</h3>
-                    <p>PII redaction, encryption enforcement, region compliance</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Data Stays Private</h3>
-                    <p>Sensitive stuff gets auto-redacted. Your users' data = safe.</p>
-                </div>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-illustration">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                    </svg>
-                </div>
-                <div class="tech-content active">
-                    <h3>Rate Limiting</h3>
-                    <p>Prevent abuse. Control API usage and cost per endpoint</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Anti-Spam Shield</h3>
-                    <p>Rate limits keep bad actors from abusing your AI. Stay chill.</p>
-                </div>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-illustration">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="2" y1="12" x2="22" y2="12"/>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                </div>
-                <div class="tech-content active">
-                    <h3>Multi-Cloud</h3>
-                    <p>Single policy across AWS, GCP, Azure, Oracle</p>
-                </div>
-                <div class="non-tech-content">
-                    <h3>Cloud Agnostic Vibes</h3>
-                    <p>AWS? GCP? Azure? Whatever. Same rules, any cloud.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING (Vibe Coders Only) -->
-    <section class="pricing">
-        <div class="section-header">
-            <div class="section-label">For Vibe Coders</div>
-            <h2>Simple Pricing. No BS.</h2>
-            <p class="section-subtitle">Pick your vibe. Cancel anytime. No hidden fees.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <div class="pricing-tier">Starter</div>
-                <div class="pricing-amount">$20</div>
-                <div class="pricing-period">/month</div>
-                <div class="pricing-features">
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        10 deployments per month
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        All security features
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        Budget protection
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        Full audit logs
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        PII auto-redaction
-                    </div>
-                </div>
-                <a href="mailto:support@belto.world?subject=Starter Plan - Vibe Coder&body=Hey! I want the $20/month Starter plan." class="pricing-cta">Start Vibing</a>
-            </div>
-            
-            <div class="pricing-card popular">
-                <div class="pricing-badge">Most Popular</div>
-                <div class="pricing-tier">Pro</div>
-                <div class="pricing-amount">$80</div>
-                <div class="pricing-period">/month</div>
-                <div class="pricing-features">
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        <strong>Unlimited deployments</strong>
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        Priority support
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        Advanced analytics
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        Custom budget alerts
-                    </div>
-                    <div class="pricing-feature">
-                        <span class="pricing-check">✓</span>
-                        Multi-cloud deployment
-                    </div>
-                </div>
-                <a href="mailto:support@belto.world?subject=Pro Plan - Vibe Coder&body=Hey! I want the $80/month Pro plan with unlimited deployments." class="pricing-cta">Go Pro</a>
-            </div>
-        </div>
-        <p style="text-align: center; color: var(--text-muted); margin-top: 48px; font-size: 1rem;">
-            Enterprise? <a href="mailto:support@belto.world" style="color: var(--vibe-purple); text-decoration: none;">Hit us up</a> for custom pricing.
-        </p>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="tech-content active">
-            <h2>Ready to Eliminate Governance Bottlenecks?</h2>
-            <p class="section-subtitle" style="max-width: 700px; margin: 0 auto 48px auto;">
-                Deploy AI infrastructure in minutes while ensuring 100% policy compliance
+            <p class="text-lg md:text-xl text-neutral-500 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
+                Run powerful Small Language Models (SLMs) directly on your users' devices. 
+                <span class="text-white">Zero latency. 100% Privacy.</span> The complete infrastructure for on-device AI.
             </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="document.getElementById('sdk').scrollIntoView()" class="w-full sm:w-auto px-8 py-4 bg-[var(--accent)] text-white rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_10px_40px_-10px_rgba(255,77,0,0.5)]">
+                    Start Integration
+                </button>
+                <div class="flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 text-sm font-mono text-neutral-400">
+                    <span class="text-[var(--accent)]">$</span> npm install @slyos/sdk
+                </div>
+            </div>
         </div>
-        <div class="non-tech-content">
-            <h2>Ready to Prompt Your Way to Production?</h2>
-            <p class="section-subtitle" style="max-width: 700px; margin: 0 auto 48px auto;">
-                Describe your AI infrastructure. Get your API endpoint. Ship it.
-            </p>
-        </div>
-        <div class="cta-group">
-            <a href="mailto:support@belto.world?subject=Demo Request&body=I'd like to schedule a demo of Vibe Cloud." class="btn btn-primary">Book Your Demo</a>
-            <a href="mailto:support@belto.world" class="btn btn-secondary">Talk to Sales</a>
+    </header>
+
+    <section class="px-4 pb-32">
+        <div class="max-w-6xl mx-auto relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-[var(--accent)] to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            
+            <div class="relative glass-panel rounded-xl overflow-hidden shadow-2xl">
+                <div class="h-8 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 gap-2">
+                    <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                    <div class="ml-auto text-[10px] text-neutral-600 font-mono">dashboard.slyos.io</div>
+                </div>
+                <img src="./demo.png" alt="SlyOS Dashboard Interface" class="w-full h-auto object-cover opacity-90">
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-logo">VIBE CLOUD</div>
-        <div class="footer-links">
-            <a onclick="showComingSoon()">Product</a>
-            <a onclick="showComingSoon()">Documentation</a>
-            <a onclick="showComingSoon()">Pricing</a>
-            <a onclick="showComingSoon()">Blog</a>
-            <a href="mailto:support@belto.world">Contact</a>
-            <a onclick="showComingSoon()">Privacy</a>
-            <a onclick="showComingSoon()">Terms</a>
+    <section id="how-it-works" class="py-24 px-6 border-t border-white/5 bg-black/40">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-panel p-8 rounded-2xl hover:border-[var(--accent)] transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Quantization Engine</h3>
+                    <p class="text-neutral-500 leading-relaxed text-sm">
+                        We automatically optimize models (q4, q5, q8) for specific device hardware. Your iPhone users get CoreML; Android users get TFLite—automatically.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl hover:border-[var(--accent)] transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Fleet Telemetry</h3>
+                    <p class="text-neutral-500 leading-relaxed text-sm">
+                        Track inference latency, tokens-per-second, and battery impact across your entire user base without ever seeing the private prompt data.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl hover:border-[var(--accent)] transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Hybrid Routing</h3>
+                    <p class="text-neutral-500 leading-relaxed text-sm">
+                        Use local models for 90% of queries. Automatically "burst" to the cloud for complex reasoning tasks using our intelligent router.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="footer-bottom">
-            © 2025 Vibe Cloud. All rights reserved.
+    </section>
+
+    <section id="sdk" class="py-24 px-6 bg-[#050505]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Lines of code, not <br>server farms.</h2>
+                <p class="text-neutral-500 mb-8">
+                    Stop paying per-token. Distribute the compute to the edge. Our SDK handles the model downloading, caching, and inference loop.
+                </p>
+                <ul class="space-y-4 text-sm text-neutral-300">
+                    <li class="flex items-center gap-3">
+                        <div class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></div>
+                        Auto-updates models over-the-air (OTA)
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></div>
+                        Works offline (Airplane Mode ready)
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></div>
+                        Cross-platform (iOS, Android, React Native)
+                    </li>
+                </ul>
+            </div>
+
+            <div class="w-full md:w-1/2">
+                <div class="glass-panel rounded-xl overflow-hidden shadow-2xl border-none">
+                    <div class="bg-[#1e1e1e] px-4 py-3 border-b border-white/5 flex justify-between items-center">
+                        <span class="text-xs text-neutral-500 mono">main.js</span>
+                        <span class="text-[10px] text-green-500 mono">● Connected</span>
+                    </div>
+                    <div class="bg-[#0d0d0d] p-6 mono text-xs md:text-sm overflow-x-auto leading-relaxed">
+<pre><code><span class="token-keyword">import</span> { SlyOS } <span class="token-keyword">from</span> <span class="token-string">'@slyos/sdk'</span>;
+
+<span class="token-comment">// 1. Initialize with your specific company key</span>
+<span class="token-keyword">const</span> sly = <span class="token-keyword">new</span> SlyOS({
+  apiKey: <span class="token-string">'sk_live_mcd_99823...'</span>
+});
+
+<span class="token-comment">// 2. Load optimized model (caches automatically)</span>
+<span class="token-keyword">await</span> sly.loadModel(<span class="token-string">'quantum-360m'</span>);
+
+<span class="token-comment">// 3. Run inference locally</span>
+<span class="token-keyword">const</span> response = <span class="token-keyword">await</span> sly.chat({
+  role: <span class="token-string">'user'</span>,
+  content: <span class="token-string">'Summarize this legal PDF...'</span>
+});
+
+console.log(response.latency); <span class="token-comment">// "45ms"</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 bg-black py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            
+            <div class="flex items-center gap-3 opacity-50 grayscale hover:grayscale-0 transition-all">
+                <img src="./SlyOS_Flame.png" alt="Logo" class="w-6 h-6">
+                <span class="font-bold tracking-tight">SlyOS</span>
+            </div>
+
+            <div class="flex gap-8 text-xs text-neutral-500 font-mono uppercase tracking-wider">
+                <a href="#" class="hover:text-white transition-colors">Documentation</a>
+                <a href="#" class="hover:text-white transition-colors">Status</a>
+                <button onclick="openModal('privacy')" class="hover:text-white transition-colors uppercase">Privacy Policy</button>
+                <button onclick="openModal('terms')" class="hover:text-white transition-colors uppercase">Terms</button>
+            </div>
+
+            <div class="text-xs text-neutral-700">
+                &copy; 2026 SlyOS Inc. San Francisco.
+            </div>
         </div>
     </footer>
 
+    <div id="privacy" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="modal-content glass-panel w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl p-8 md:p-12 relative bg-[#0a0a0a]">
+            <button onclick="closeModal('privacy')" class="absolute top-6 right-6 text-neutral-500 hover:text-white text-2xl">&times;</button>
+            
+            <h2 class="text-3xl font-bold mb-2">Privacy Policy</h2>
+            <p class="text-neutral-500 text-sm mb-8">Last Updated: January 28, 2026</p>
+
+            <div class="space-y-6 text-neutral-300 text-sm leading-relaxed">
+                <p>At SlyOS ("we", "our"), we believe the most secure data is data we never touch. Our architecture is designed to keep user prompts and model inference strictly on the end-user's device.</p>
+
+                <h4 class="text-white font-bold text-base">1. Data We Do Not Collect</h4>
+                <p>We do not—and technically cannot—access the content of the conversations (prompts and completions) generated on the device using the SlyOS SDK. All inference happens locally on the hardware (NPU/GPU/CPU).</p>
+
+                <h4 class="text-white font-bold text-base">2. Telemetry Data</h4>
+                <p>To provide dashboard analytics to our customers (the Application Providers), the SDK sends minimal technical telemetry to our servers in AWS (us-east-2), including:</p>
+                <ul class="list-disc pl-5 text-neutral-500 space-y-1">
+                    <li>Device performance metrics (Latency, Token generation speed).</li>
+                    <li>Hardware specifications (Device model, RAM, OS version).</li>
+                    <li>Error logs related to model downloading or loading.</li>
+                </ul>
+
+                <h4 class="text-white font-bold text-base">3. Infrastructure Security</h4>
+                <p>Our backend is hosted on AWS Elastic Beanstalk with strictly configured VPCs. Database connections are encrypted via TLS. We do not sell or share telemetry data with third parties.</p>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/10 flex justify-end">
+                <button onclick="closeModal('privacy')" class="px-6 py-2 bg-white text-black font-bold rounded-full text-sm hover:bg-[var(--accent)] hover:text-white transition-colors">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="terms" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="modal-content glass-panel w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl p-8 md:p-12 relative bg-[#0a0a0a]">
+            <button onclick="closeModal('terms')" class="absolute top-6 right-6 text-neutral-500 hover:text-white text-2xl">&times;</button>
+            
+            <h2 class="text-3xl font-bold mb-2">Terms of Service</h2>
+            <p class="text-neutral-500 text-sm mb-8">Effective Date: January 28, 2026</p>
+
+            <div class="space-y-6 text-neutral-300 text-sm leading-relaxed">
+                <p>By downloading, installing, or using the SlyOS SDK ("Software"), you agree to these terms.</p>
+
+                <h4 class="text-white font-bold text-base">1. License Grant</h4>
+                <p>SlyOS grants you a limited, non-exclusive, non-transferable license to integrate the SDK into your applications for the purpose of running on-device AI models. You may not reverse engineer the SDK binary or attempt to spoof telemetry data.</p>
+
+                <h4 class="text-white font-bold text-base">2. Acceptable Use</h4>
+                <p>You agree not to use SlyOS infrastructure to deploy models that generate illegal content, hate speech, or malicious code. We reserve the right to revoke API keys for violations.</p>
+
+                <h4 class="text-white font-bold text-base">3. Model Licensing</h4>
+                <p>Models provided via the SlyOS Model Zoo (e.g., Llama, SmolLM) are subject to their respective original licenses (Apache 2.0, MIT, etc.). You are responsible for complying with these licenses.</p>
+
+                <h4 class="text-white font-bold text-base">4. Liability</h4>
+                <p>The Software is provided "AS IS". SlyOS Inc. is not liable for hardware overheating, battery drain, or incorrect outputs generated by the AI models.</p>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/10 flex justify-end">
+                <button onclick="closeModal('terms')" class="px-6 py-2 bg-white text-black font-bold rounded-full text-sm hover:bg-[var(--accent)] hover:text-white transition-colors">I Agree</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function switchMode(mode) {
-            const techBtn = document.getElementById('techBtn');
-            const nonTechBtn = document.getElementById('nonTechBtn');
-            const techContent = document.querySelectorAll('.tech-content');
-            const nonTechContent = document.querySelectorAll('.non-tech-content');
-            const body = document.body;
-
-            if (mode === 'tech') {
-                techBtn.classList.add('active');
-                nonTechBtn.classList.remove('active');
-                techContent.forEach(el => el.classList.add('active'));
-                nonTechContent.forEach(el => el.classList.remove('active'));
-                body.classList.remove('vibe-mode');
-            } else {
-                nonTechBtn.classList.add('active');
-                techBtn.classList.remove('active');
-                nonTechContent.forEach(el => el.classList.add('active'));
-                techContent.forEach(el => el.classList.remove('active'));
-                body.classList.add('vibe-mode');
-            }
+        // Modal Logic
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
 
-        function showComingSoon() {
-            document.getElementById('comingSoonModal').classList.add('show');
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
 
-        function closeModal() {
-            document.getElementById('comingSoonModal').classList.remove('show');
-        }
+        // Close on clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
 
-        function scrollToDemo() {
-            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Close modal on outside click
-        document.getElementById('comingSoonModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+        // Smooth Scroll handling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
