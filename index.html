@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>SlyOS | The Edge Intelligence Infrastructure</title>
-    <meta name="description" content="Deploy, manage, and optimize on-device Small Language Models (SLMs). The complete infrastructure for local AI with zero latency. Supports Web, Ollama, and Mobile.">
-    <meta name="keywords" content="Edge AI, On-Device LLM, SLM, AI Infrastructure, SlyOS, Local Inference, SDK, Ollama, WebGPU">
-    <meta name="author" content="SlyOS">
+    <title>SlyOS | The Edge Intelligence Infrastructure by Belto</title>
+    <meta name="description" content="SlyOS by Belto Inc. is the infrastructure for deploying local AI models to edge devices. Zero latency, 100% privacy, WebGPU enabled.">
+    <meta name="keywords" content="Edge AI, On-Device LLM, SLM, Belto, SlyOS, Local Inference, SDK, WebGPU, VoiceCore, Quantum">
+    <meta name="author" content="Belto Inc.">
     <meta name="theme-color" content="#FF4D00">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="SlyOS - Intelligence at the Edge">
-    <meta property="og:description" content="The infrastructure for deploying local AI models to millions of devices instantly.">
+    <meta property="og:description" content="Run powerful AI models directly on user devices. The complete infrastructure by Belto Inc.">
     <meta property="og:image" content="./demo.png">
 
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         :root {
             --bg-deep: #050505;
             --bg-card: #0A0A0A;
-            --accent: #FF4D00;
-            --accent-glow: rgba(255, 77, 0, 0.15);
+            --accent: #FF4D00; /* SlyOS Flame Color */
+            --accent-dim: rgba(255, 77, 0, 0.1);
             --text-main: #EDEDED;
             --text-muted: #888888;
             --border: rgba(255, 255, 255, 0.08);
@@ -48,13 +49,13 @@
 
         /* Noise Texture */
         .noise {
-            position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.04;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bW9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIxIi8+PC9zdmc+');
+            position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.03;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuODUiIG51bW9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIxIi8+PC9zdmc+');
         }
 
         /* Glassmorphism */
         .glass {
-            background: rgba(20, 20, 20, 0.6);
+            background: rgba(15, 15, 15, 0.6);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border);
         }
@@ -64,31 +65,26 @@
         }
         .card-hover:hover {
             border-color: var(--accent);
-            box-shadow: 0 0 30px -10px var(--accent-glow);
             transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px var(--accent-dim);
         }
 
-        /* Custom Scrollbar */
+        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        /* Animations */
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        .animate-glow { animation: pulse-glow 3s infinite; }
-
-        /* Code Syntax */
-        .token-keyword { color: #ff79c6; }
-        .token-string { color: #f1fa8c; }
-        .token-function { color: #8be9fd; }
-        .token-comment { color: #6272a4; }
+        /* Syntax Highlighting */
+        .hl-k { color: #ff79c6; } /* keyword */
+        .hl-s { color: #f1fa8c; } /* string */
+        .hl-f { color: #8be9fd; } /* function */
+        .hl-c { color: #6272a4; } /* comment */
+        .hl-v { color: #bd93f9; } /* variable */
+        .hl-n { color: #ffb86c; } /* number */
     </style>
 </head>
-<body class="relative">
+<body class="relative selection:bg-[var(--accent)] selection:text-white">
 
     <div class="noise"></div>
 
@@ -100,13 +96,10 @@
             </a>
 
             <div class="hidden md:flex items-center gap-8 text-xs font-medium text-neutral-400 uppercase tracking-wide">
-                <a href="#workflow" class="hover:text-white transition-colors">How it Works</a>
-                <a href="#model-zoo" class="hover:text-white transition-colors">Model Zoo</a>
-                <button onclick="openModal('docs')" class="hover:text-white transition-colors">Documentation</button>
-                <button onclick="openModal('status')" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                    Status
-                </button>
+                <a href="#integration" class="hover:text-white transition-colors">Integration</a>
+                <a href="#models" class="hover:text-white transition-colors">Model Zoo</a>
+                <a href="#platform" class="hover:text-white transition-colors">Platform</a>
+                <button onclick="openModal('docs')" class="hover:text-white transition-colors">Docs</button>
             </div>
 
             <div class="flex items-center gap-4">
@@ -114,121 +107,118 @@
                    class="mono text-[10px] text-neutral-500 hover:text-[var(--accent)] transition-colors hidden sm:block">
                     console.login()
                 </a>
-                <a href="#contact" class="px-4 py-2 bg-white text-black font-bold text-xs rounded-full hover:bg-[var(--accent)] hover:text-white transition-all">
-                    Get Access
+                <a href="mailto:support@belto.world" class="px-4 py-2 bg-white text-black font-bold text-xs rounded-full hover:bg-[var(--accent)] hover:text-white transition-all">
+                    Contact Sales
                 </a>
             </div>
         </div>
     </nav>
 
     <header class="relative pt-40 pb-24 px-6 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-[var(--accent)] opacity-[0.08] blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-[var(--accent)] opacity-[0.06] blur-[120px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/5 text-[10px] font-mono text-[var(--accent)] uppercase tracking-wider">
-                <i class="ph-bold ph-lightning"></i>
-                <span>v1.0 Production Ready</span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/5 text-[10px] font-mono text-[var(--accent)] uppercase tracking-wider animate-fade-in-up">
+                <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
+                <span>Belto Infrastructure v1.0</span>
             </div>
             
             <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[0.95]">
-                Deploy AI to the edge.<br>
-                <span class="text-neutral-500">In 4 clicks.</span>
+                Intelligence at the Edge.<br>
+                <span class="text-neutral-600">Infrastructure for Local AI.</span>
             </h1>
             
             <p class="text-lg text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-                The complete infrastructure for On-Device Intelligence. 
-                Select a model, configure the quantization, and ship it to 
-                <span class="text-white font-medium">Web, Mobile, or Desktop</span> instantly.
+                SlyOS provides the complete toolchain to deploy Small Language Models (SLMs) to your users' devices. 
+                <span class="text-white font-medium">Zero latency. 100% Privacy. No per-token fees.</span>
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button onclick="document.getElementById('model-zoo').scrollIntoView()" class="w-full sm:w-auto px-8 py-3.5 bg-[var(--accent)] text-white rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_-5px_var(--accent)]">
-                    Explore Models
-                </button>
-                <div class="flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-400">
-                    <span>$ npm install @slyos/sdk</span>
-                    <button class="hover:text-white"><i class="ph ph-copy"></i></button>
+                <a href="#integration" class="w-full sm:w-auto px-8 py-3.5 bg-[var(--accent)] text-white rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_-5px_var(--accent)]">
+                    Start Integration
+                </a>
+                <div class="flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-400 group cursor-pointer hover:border-white/20 transition-colors">
+                    <span>$ npm install @belto/slyos-sdk</span>
+                    <i class="ph ph-copy group-hover:text-white"></i>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="border-y border-white/5 bg-white/[0.02]">
-        <div class="max-w-7xl mx-auto px-6 py-8 flex flex-wrap justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-            <div class="flex items-center gap-3">
-                <i class="ph-fill ph-globe text-2xl"></i>
-                <div class="text-left">
-                    <div class="text-xs font-bold text-white">WebGPU</div>
-                    <div class="text-[10px] text-green-500 mono">● LIVE</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <i class="ph-fill ph-linux-logo text-2xl"></i>
-                <div class="text-left">
-                    <div class="text-xs font-bold text-white">Ollama / Linux</div>
-                    <div class="text-[10px] text-green-500 mono">● LIVE</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3 opacity-50">
-                <i class="ph-fill ph-apple-logo text-2xl"></i>
-                <div class="text-left">
-                    <div class="text-xs font-bold text-white">iOS / macOS</div>
-                    <div class="text-[10px] text-neutral-500 mono">COMING Q2</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3 opacity-50">
-                <i class="ph-fill ph-android-logo text-2xl"></i>
-                <div class="text-left">
-                    <div class="text-xs font-bold text-white">Android</div>
-                    <div class="text-[10px] text-neutral-500 mono">COMING Q2</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section id="workflow" class="py-24 px-6 relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">From zero to inference.</h2>
-                <p class="text-neutral-500">Forget complex Python environments. SlyOS makes it a simple 3-step pipeline.</p>
+    <section id="integration" class="py-24 px-6 relative border-y border-white/5 bg-[#080808]">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 text-center md:text-left">
+                <h2 class="text-3xl font-bold mb-4">4 Steps to Local Intelligence</h2>
+                <p class="text-neutral-500">Integrate the SlyOS SDK into your app in minutes. We handle the quantization, caching, and inference loop.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 relative">
-                <div class="hidden md:block absolute top-12 left-[20%] right-[20%] h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-30 border-t border-dashed border-white/20"></div>
-
-                <div class="relative glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-colors group">
-                    <div class="w-10 h-10 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] font-mono font-bold relative z-10 group-hover:scale-110 transition-transform">1</div>
-                    <h3 class="text-lg font-bold mb-2">Select Model</h3>
-                    <p class="text-sm text-neutral-500 mb-4">Choose from our curated Zoo of 9+ optimized SLMs (Quantum, VoiceCore).</p>
-                    <div class="h-24 bg-black/50 rounded border border-white/5 overflow-hidden relative">
-                        <img src="./demo.png" class="opacity-40 w-full h-full object-cover">
-                        <div class="absolute inset-0 flex items-center justify-center text-[10px] mono text-[var(--accent)]">>> SELECTION_GRID</div>
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-4 space-y-6">
+                    <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--accent)] transition-colors cursor-pointer group">
+                        <div class="text-[var(--accent)] font-bold text-xs uppercase tracking-widest mb-2">Step 01</div>
+                        <h3 class="text-lg font-bold mb-2">Install SDK</h3>
+                        <p class="text-sm text-neutral-500">Add the lightweight Belto/SlyOS package to your project.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition-colors cursor-pointer">
+                        <div class="text-neutral-600 font-bold text-xs uppercase tracking-widest mb-2">Step 02</div>
+                        <h3 class="text-lg font-bold text-neutral-300 mb-2">Initialize & Auth</h3>
+                        <p class="text-sm text-neutral-500">Use your organization's API key to authenticate the device.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition-colors cursor-pointer">
+                        <div class="text-neutral-600 font-bold text-xs uppercase tracking-widest mb-2">Step 03</div>
+                        <h3 class="text-lg font-bold text-neutral-300 mb-2">Load Model</h3>
+                        <p class="text-sm text-neutral-500">Download optimized weights (~200MB) once. Cached forever.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition-colors cursor-pointer">
+                        <div class="text-neutral-600 font-bold text-xs uppercase tracking-widest mb-2">Step 04</div>
+                        <h3 class="text-lg font-bold text-neutral-300 mb-2">Generate</h3>
+                        <p class="text-sm text-neutral-500">Run inference locally with standard chat completion parameters.</p>
                     </div>
                 </div>
 
-                <div class="relative glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-colors group">
-                    <div class="w-10 h-10 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] font-mono font-bold relative z-10 group-hover:scale-110 transition-transform">2</div>
-                    <h3 class="text-lg font-bold mb-2">Get the SDK</h3>
-                    <p class="text-sm text-neutral-500 mb-4">Install the SlyOS SDK into your Web App, Electron App, or Server.</p>
-                    <div class="bg-[#050505] p-3 rounded border border-white/5 font-mono text-[10px] text-neutral-400">
-                        <span class="text-[var(--accent)]">import</span> { Sly } <span class="text-[var(--accent)]">from</span> '@slyos'<br>
-                        <span class="text-blue-400">await</span> Sly.load('<span class="text-green-400">quantum-360m</span>')
-                    </div>
-                </div>
-
-                <div class="relative glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-colors group">
-                    <div class="w-10 h-10 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] font-mono font-bold relative z-10 group-hover:scale-110 transition-transform">3</div>
-                    <h3 class="text-lg font-bold mb-2">Deploy & Track</h3>
-                    <p class="text-sm text-neutral-500 mb-4">Users download the model once. You track latency and tokens in real-time.</p>
-                    <div class="flex items-center gap-4 mt-6">
-                        <div class="flex-1">
-                            <div class="text-[10px] uppercase text-neutral-600 font-bold mb-1">Latency</div>
-                            <div class="text-xl font-mono text-white">45<span class="text-sm text-neutral-500">ms</span></div>
+                <div class="lg:col-span-8">
+                    <div class="glass rounded-xl overflow-hidden shadow-2xl h-full flex flex-col">
+                        <div class="bg-[#151515] px-4 py-3 border-b border-white/5 flex justify-between items-center">
+                            <div class="flex gap-2">
+                                <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                            </div>
+                            <span class="text-[10px] text-neutral-500 mono">main.ts — SlyOS Integration</span>
                         </div>
-                        <div class="h-8 w-[1px] bg-white/10"></div>
-                        <div class="flex-1">
-                            <div class="text-[10px] uppercase text-neutral-600 font-bold mb-1">Tokens/s</div>
-                            <div class="text-xl font-mono text-[var(--accent)]">52<span class="text-sm text-neutral-500">t/s</span></div>
+                        <div class="bg-[#0c0c0c] p-8 overflow-x-auto flex-1">
+                            <pre class="font-mono text-sm leading-relaxed">
+<span class="hl-c">// 1. Install via NPM</span>
+<span class="hl-c"># npm install @belto/slyos-sdk</span>
+
+<span class="hl-k">import</span> SlyOS <span class="hl-k">from</span> <span class="hl-s">'@belto/slyos-sdk'</span>;
+
+<span class="hl-k">async function</span> <span class="hl-f">setupAI</span>() {
+  <span class="hl-c">// 2. Initialize with your Belto Key</span>
+  <span class="hl-k">const</span> sdk = <span class="hl-k">new</span> <span class="hl-f">SlyOS</span>({
+    apiKey: <span class="hl-s">'sk_live_demo123456789abcdef...'</span>
+  });
+  
+  <span class="hl-k">await</span> sdk.<span class="hl-f">initialize</span>();
+
+  <span class="hl-c">// 3. Load Model (cached automatically on device)</span>
+  <span class="hl-k">await</span> sdk.<span class="hl-f">loadModel</span>(<span class="hl-s">'voicecore-base'</span>);
+  console.<span class="hl-f">log</span>(<span class="hl-s">'Model ready!'</span>);
+
+  <span class="hl-c">// 4. Generate Response</span>
+  <span class="hl-k">const</span> response = <span class="hl-k">await</span> sdk.<span class="hl-f">generate</span>(
+    <span class="hl-s">'voicecore-base'</span>, 
+    <span class="hl-s">'What are your daily specials?'</span>, 
+    {
+      temperature: <span class="hl-n">0.7</span>,
+      maxTokens: <span class="hl-n">2000</span>,
+      topP: <span class="hl-n">0.9</span>
+    }
+  );
+
+  console.<span class="hl-f">log</span>(response);
+}
+                            </pre>
                         </div>
                     </div>
                 </div>
@@ -236,18 +226,12 @@
         </div>
     </section>
 
-    <section id="model-zoo" class="py-24 px-6 bg-[#030303]">
+    <section id="models" class="py-24 px-6 bg-[#030303]">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
                     <h2 class="text-3xl font-bold mb-2">The Model Zoo</h2>
-                    <p class="text-neutral-500">Optimized, quantized, and ready for edge deployment.</p>
-                </div>
-                <div class="flex gap-2 text-xs font-mono">
-                    <span class="px-3 py-1 rounded bg-white/10 text-white cursor-pointer hover:bg-white/20">All</span>
-                    <span class="px-3 py-1 rounded border border-white/10 text-neutral-500 cursor-pointer hover:text-white">Text</span>
-                    <span class="px-3 py-1 rounded border border-white/10 text-neutral-500 cursor-pointer hover:text-white">Voice</span>
-                    <span class="px-3 py-1 rounded border border-white/10 text-neutral-500 cursor-pointer hover:text-white">Code</span>
+                    <p class="text-neutral-500">Optimized weights for every use case. Click to deploy.</p>
                 </div>
             </div>
 
@@ -256,254 +240,270 @@
         </div>
     </section>
 
-    <section class="py-24 px-6 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
-            <div class="w-full md:w-1/2">
-                <div class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold tracking-widest uppercase mb-6">Developer First</div>
-                <h2 class="text-4xl font-bold mb-6">Complete Telemetry.<br>Zero Privacy Risk.</h2>
-                <p class="text-neutral-400 mb-8 leading-relaxed">
-                    SlyOS gives you the analytics of a cloud API (latency, error rates, token counts) without ever sending the user's prompt to your server.
-                </p>
-                
-                <div class="space-y-6">
-                    <div class="flex gap-4">
-                        <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center shrink-0">
-                            <i class="ph ph-shield-check text-green-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-white">Privacy by Architecture</h4>
-                            <p class="text-xs text-neutral-500 mt-1">Inference happens on the NPU/CPU. Data never leaves the device.</p>
-                        </div>
+    <section id="platform" class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-xl font-bold mb-10">Platform Support</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-xl flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="ph-fill ph-apple-logo text-3xl"></i>
+                        <span class="font-bold text-lg">iOS</span>
                     </div>
-                    <div class="flex gap-4">
-                        <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center shrink-0">
-                            <i class="ph ph-chart-line-up text-[var(--accent)]"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-white">Full Observability</h4>
-                            <p class="text-xs text-neutral-500 mt-1">See exactly which devices are struggling and which models perform best.</p>
-                        </div>
-                    </div>
+                    <ul class="text-sm text-neutral-500 space-y-2">
+                        <li>• iOS 16+</li>
+                        <li>• 512MB+ RAM allocated</li>
+                        <li>• Neural Engine Support</li>
+                    </ul>
                 </div>
-
-                <div class="mt-10">
-                    <button onclick="openModal('docs')" class="text-sm font-bold border-b border-[var(--accent)] pb-1 hover:text-[var(--accent)] transition-colors">
-                        Read the Documentation &rarr;
-                    </button>
+                <div class="glass p-8 rounded-xl flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="ph-fill ph-android-logo text-3xl"></i>
+                        <span class="font-bold text-lg">Android</span>
+                    </div>
+                    <ul class="text-sm text-neutral-500 space-y-2">
+                        <li>• Android 12+</li>
+                        <li>• 512MB+ RAM allocated</li>
+                        <li>• NPU Acceleration</li>
+                    </ul>
                 </div>
-            </div>
-
-            <div class="w-full md:w-1/2">
-                <div class="glass rounded-xl overflow-hidden shadow-2xl">
-                    <div class="bg-[#151515] px-4 py-3 border-b border-white/5 flex justify-between items-center">
-                        <div class="flex gap-2">
-                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/20"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/20"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/20"></div>
-                        </div>
-                        <span class="text-[10px] text-neutral-500 mono">terminal</span>
+                <div class="glass p-8 rounded-xl flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="ph-fill ph-globe text-3xl"></i>
+                        <span class="font-bold text-lg">Web / Node</span>
                     </div>
-                    <div class="bg-[#0A0A0A] p-6 font-mono text-xs overflow-x-auto leading-loose">
-                        <div class="text-neutral-500"># 1. Install SlyOS</div>
-                        <div class="text-white">$ npm install @slyos/sdk</div>
-                        <br>
-                        <div class="text-neutral-500"># 2. Register Device</div>
-                        <div class="text-white">$ curl -X POST api/devices/register \</div>
-                        <div class="pl-4 text-[var(--accent)]">--header "X-API-KEY: sk_mcd_123"</div>
-                        <br>
-                        <div class="text-neutral-500"># 3. Output</div>
-                        <div class="text-green-400">{</div>
-                        <div class="pl-4 text-green-400">"status": "ready",</div>
-                        <div class="pl-4 text-green-400">"model": "quantum-360m",</div>
-                        <div class="pl-4 text-green-400">"hardware": "WebGPU_Enabled"</div>
-                        <div class="text-green-400">}</div>
-                    </div>
+                    <ul class="text-sm text-neutral-500 space-y-2">
+                        <li>• Modern Browsers (Chrome, Edge)</li>
+                        <li>• WebGPU Support Required</li>
+                        <li>• Node.js v18+</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="border-t border-white/5 bg-black py-12 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-3 opacity-50 grayscale hover:grayscale-0 transition-all">
-                <img src="./SlyOS_Flame.png" alt="Logo" class="w-6 h-6">
-                <span class="font-bold tracking-tight text-white">SlyOS</span>
+    <section class="py-24 px-6 bg-[#080808]">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">Fleet Management</h2>
+                <p class="text-neutral-500">Monitor your devices in real-time. Manage models remotely.</p>
             </div>
-            <div class="flex gap-8 text-[10px] text-neutral-500 font-mono uppercase tracking-wider">
-                <button onclick="openModal('privacy')" class="hover:text-white">Privacy Policy</button>
-                <button onclick="openModal('terms')" class="hover:text-white">Terms of Service</button>
-                <a href="mailto:support@slyos.io" class="hover:text-white">Contact</a>
+            
+            <div class="glass rounded-xl overflow-hidden border border-white/10">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-white/5 text-xs uppercase text-neutral-400 font-bold">
+                            <tr>
+                                <th class="px-6 py-4">Device ID</th>
+                                <th class="px-6 py-4">Platform</th>
+                                <th class="px-6 py-4">Memory</th>
+                                <th class="px-6 py-4">CPU</th>
+                                <th class="px-6 py-4">Status</th>
+                                <th class="px-6 py-4">Last Seen</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-neutral-300 font-mono text-xs">
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 text-white">device-176965...</td>
+                                <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-gear"></i> nodejs</td>
+                                <td class="px-6 py-4">4096MB</td>
+                                <td class="px-6 py-4">4 cores</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full bg-green-500/20 text-green-500 text-[10px] uppercase font-bold">Active</span></td>
+                                <td class="px-6 py-4 text-neutral-500">1/28/2026, 6:27 PM</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 text-white">device-001...</td>
+                                <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-apple-logo"></i> ios</td>
+                                <td class="px-6 py-4">8192MB</td>
+                                <td class="px-6 py-4">6 cores</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full bg-green-500/20 text-green-500 text-[10px] uppercase font-bold">Active</span></td>
+                                <td class="px-6 py-4 text-neutral-500">1/28/2026, 11:13 AM</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 text-white">device-002...</td>
+                                <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-android-logo"></i> android</td>
+                                <td class="px-6 py-4">12288MB</td>
+                                <td class="px-6 py-4">8 cores</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full bg-green-500/20 text-green-500 text-[10px] uppercase font-bold">Active</span></td>
+                                <td class="px-6 py-4 text-neutral-500">1/28/2026, 11:13 AM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="text-[10px] text-neutral-700 font-mono">
-                &copy; 2026 SlyOS Inc. US-EAST-2.
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 bg-black py-16 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="./SlyOS_Flame.png" alt="Logo" class="w-8 h-8 opacity-80">
+                    <span class="font-bold tracking-tight text-white text-xl">SlyOS</span>
+                </div>
+                <p class="text-sm text-neutral-500 max-w-xs mb-8">
+                    Built by Belto Inc.<br>
+                    San Francisco, CA<br>
+                    <a href="mailto:support@belto.world" class="text-[var(--accent)] hover:underline">support@belto.world</a>
+                </p>
+                <div class="text-[10px] text-neutral-700 font-mono">
+                    &copy; 2026 Belto Inc. All rights reserved.
+                </div>
+            </div>
+            
+            <div class="flex gap-16">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-neutral-500">
+                        <li><a href="#" class="hover:text-white">Architecture</a></li>
+                        <li><a href="#" class="hover:text-white">Model Zoo</a></li>
+                        <li><a href="#" class="hover:text-white">SDK</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-neutral-500">
+                        <li><button onclick="openModal('privacy')" class="hover:text-white text-left">Privacy Policy</button></li>
+                        <li><button onclick="openModal('terms')" class="hover:text-white text-left">Terms of Service</button></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
 
-    <div id="modal-backdrop" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeAllModals()">
+    <div id="modal-backdrop" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeAllModals()">
         
-        <div id="modal-privacy" class="modal-content glass bg-[#0a0a0a] w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl p-8 hidden relative" onclick="event.stopPropagation()">
-            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white">&times;</button>
-            <h2 class="text-2xl font-bold mb-6">Privacy Policy</h2>
-            <div class="prose prose-invert prose-sm text-neutral-400">
-                <p><strong>Effective Date:</strong> Jan 28, 2026</p>
-                <p>SlyOS is designed with a "Zero-Knowledge" architecture. We provide the infrastructure (SDKs, Model Weights, Telemetry APIs) but we do not process the actual inputs (prompts) or outputs (completions) of your users.</p>
-                <h4 class="text-white mt-4 font-bold">Data Collection</h4>
-                <ul class="list-disc pl-4 space-y-2">
-                    <li><strong>Device Specs:</strong> RAM, GPU type, and OS version to optimize model selection.</li>
-                    <li><strong>Performance Metrics:</strong> Latency (ms), Tokens per second (t/s), and Error rates.</li>
+        <div id="modal-privacy" class="modal-content bg-[#0a0a0a] border border-white/10 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl p-8 hidden relative shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white transition-colors">&times;</button>
+            
+            <div class="prose prose-invert max-w-none">
+                <h1 class="text-3xl font-bold mb-2">Privacy Policy</h1>
+                <p class="text-neutral-500 text-sm mb-8 font-mono">Last Updated: January 28, 2026</p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">1. Overview</h3>
+                <p class="text-neutral-400 mb-4">Belto Inc. ("Belto", "we", "us") respects your privacy. SlyOS is designed as a "Local-First" infrastructure, meaning the core processing of data (AI Inference) occurs on the End User's device, not on our servers.</p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">2. Data We Collect (Telemetry Only)</h3>
+                <p class="text-neutral-400 mb-2">To provide the device management dashboard to our customers, the SlyOS SDK collects the following technical telemetry:</p>
+                <ul class="list-disc pl-5 text-neutral-400 space-y-2 mb-4">
+                    <li><strong>Device Identifiers:</strong> A unique, anonymized UUID generated upon SDK initialization (e.g., `device-1769...`).</li>
+                    <li><strong>Hardware Specifications:</strong> CPU core count, GPU model, Total RAM, and Operating System version. This is used to determine which quantized model (q4, q8) is delivered to the device.</li>
+                    <li><strong>Performance Metrics:</strong> Inference latency (ms), tokens per second (t/s), and model load times.</li>
+                    <li><strong>Status Heartbeats:</strong> "Active", "Idle", or "Offline" states.</li>
                 </ul>
-                <h4 class="text-white mt-4 font-bold">No Content Access</h4>
-                <p>Inference runs locally on the end-user's hardware. SlyOS servers never receive the text data generated by the models.</p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">3. Data We Do NOT Collect</h3>
+                <div class="bg-red-500/10 border border-red-500/20 p-4 rounded-lg mb-4">
+                    <p class="text-red-200 font-bold">Crucial:</p>
+                    <p class="text-red-200/70 text-sm">We do not collect, store, or transmit the content of Prompts (inputs) or Completions (outputs) generated by the models. All text generation happens locally on the device hardware.</p>
+                </div>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">4. Data Storage & Security</h3>
+                <p class="text-neutral-400 mb-4">Telemetry data is stored in encrypted databases (AWS RDS) located in the US-EAST-2 region. Access is restricted to authorized Belto personnel and the specific Organization Admin who owns the API Key used by the device.</p>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/10 flex justify-end">
+                <button onclick="closeAllModals()" class="px-8 py-3 bg-white text-black font-bold rounded-full text-sm hover:bg-[var(--accent)] hover:text-white transition-colors">I Understand</button>
             </div>
         </div>
 
-        <div id="modal-terms" class="modal-content glass bg-[#0a0a0a] w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl p-8 hidden relative" onclick="event.stopPropagation()">
-            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white">&times;</button>
-            <h2 class="text-2xl font-bold mb-6">Terms of Service</h2>
-            <div class="prose prose-invert prose-sm text-neutral-400">
-                <p>By using the SlyOS SDK, you agree to the following:</p>
-                <ol class="list-decimal pl-4 space-y-2">
-                    <li><strong>Usage:</strong> You are responsible for the content generated by the models in your application.</li>
-                    <li><strong>License:</strong> SlyOS grants a non-exclusive license to use the SDK. You may not reverse-engineer the binary quantization engine.</li>
-                    <li><strong>Liability:</strong> SlyOS is not liable for device overheating or battery drain caused by excessive inference loops implemented by the developer.</li>
-                </ol>
-            </div>
-        </div>
+        <div id="modal-terms" class="modal-content bg-[#0a0a0a] border border-white/10 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl p-8 hidden relative shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white transition-colors">&times;</button>
+            
+            <div class="prose prose-invert max-w-none">
+                <h1 class="text-3xl font-bold mb-2">Terms of Service</h1>
+                <p class="text-neutral-500 text-sm mb-8 font-mono">Effective Date: January 28, 2026</p>
 
-        <div id="modal-docs" class="modal-content glass bg-[#0a0a0a] w-full max-w-4xl h-[80vh] rounded-2xl overflow-hidden hidden relative flex flex-col" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between p-6 border-b border-white/10 bg-[#050505]">
-                <div class="flex items-center gap-3">
-                    <i class="ph ph-book text-[var(--accent)]"></i>
-                    <span class="font-bold">SlyOS Documentation</span>
-                    <span class="text-xs bg-white/10 px-2 py-0.5 rounded text-neutral-400">v1.0.2</span>
-                </div>
-                <button onclick="closeAllModals()" class="text-neutral-500 hover:text-white"><i class="ph ph-x text-xl"></i></button>
-            </div>
-            <div class="flex-1 flex overflow-hidden">
-                <div class="w-64 bg-[#050505] border-r border-white/5 p-6 space-y-4 hidden md:block">
-                    <div class="text-xs font-bold text-neutral-600 uppercase">Getting Started</div>
-                    <div class="text-sm text-[var(--accent)]">Installation</div>
-                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">API Keys</div>
-                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">Model List</div>
-                    <div class="mt-6 text-xs font-bold text-neutral-600 uppercase">Guides</div>
-                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">React Integration</div>
-                    <div class="text-sm text-neutral-400 hover:text-white cursor-pointer">Ollama Bridge</div>
-                </div>
-                <div class="flex-1 p-8 overflow-y-auto bg-[#0a0a0a]">
-                    <h1 class="text-3xl font-bold mb-4">Installation</h1>
-                    <p class="text-neutral-400 mb-6">Install the SlyOS SDK to begin deploying models to the edge.</p>
-                    <div class="bg-black p-4 rounded border border-white/10 font-mono text-sm mb-6">
-                        $ npm install @slyos/sdk
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Quick Start</h3>
-                    <p class="text-neutral-400 mb-4">Initialize the client with your organization key.</p>
-                    <div class="bg-black p-4 rounded border border-white/10 font-mono text-xs leading-loose text-neutral-300">
-                        <span class="text-[var(--accent)]">import</span> { Sly } <span class="text-[var(--accent)]">from</span> '@slyos/sdk';<br><br>
-                        <span class="text-purple-400">const</span> sly = <span class="text-purple-400">new</span> Sly({<br>
-                        &nbsp;&nbsp;apiKey: <span class="text-green-400">'sk_live_...'</span><br>
-                        });<br><br>
-                        <span class="text-neutral-500">// Downloads and caches the model automatically</span><br>
-                        <span class="text-blue-400">await</span> sly.load(<span class="text-green-400">'quantum-360m'</span>);
-                    </div>
-                </div>
-            </div>
-        </div>
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">1. Acceptance of Terms</h3>
+                <p class="text-neutral-400 mb-4">By downloading, installing, or integrating the `@belto/slyos-sdk` ("SDK") or accessing the SlyOS Dashboard, you agree to be bound by these Terms. If you are entering into these Terms on behalf of a company, you represent that you have the authority to bind that entity.</p>
 
-        <div id="modal-status" class="modal-content glass bg-[#0a0a0a] w-full max-w-lg rounded-2xl p-8 hidden relative" onclick="event.stopPropagation()">
-            <button onclick="closeAllModals()" class="absolute top-6 right-6 text-2xl text-neutral-500 hover:text-white">&times;</button>
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
-                <span class="relative flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                </span>
-                System Status
-            </h2>
-            <div class="space-y-4">
-                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                    <span class="text-sm">API (us-east-2)</span>
-                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
-                </div>
-                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                    <span class="text-sm">Model CDN (Global)</span>
-                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
-                </div>
-                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                    <span class="text-sm">Dashboard</span>
-                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
-                </div>
-                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
-                    <span class="text-sm">Payment Gateway</span>
-                    <span class="text-xs text-green-400 font-mono">OPERATIONAL</span>
-                </div>
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">2. License Grant</h3>
+                <p class="text-neutral-400 mb-4">Belto Inc. grants you a limited, non-exclusive, non-transferable, revocable license to use the SDK for the purpose of enabling on-device AI inference within your applications.</p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">3. Restrictions</h3>
+                <ul class="list-disc pl-5 text-neutral-400 space-y-2 mb-4">
+                    <li>You may not reverse engineer, decompile, or disassemble the SDK binaries or the quantization engine.</li>
+                    <li>You may not use the Service to distribute malicious code, malware, or illegal content.</li>
+                    <li>You may not attempt to flood the API with fake device registrations (Sybil attack).</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">4. Model Licensing</h3>
+                <p class="text-neutral-400 mb-4">Models available in the SlyOS Model Zoo (e.g., Llama, Mistral, Qwen derivatives) are subject to their original licenses (Apache 2.0, MIT, or Community License). You are responsible for complying with the attribution requirements of the underlying base models.</p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">5. Disclaimer of Warranties</h3>
+                <p class="text-neutral-400 mb-4">THE SOFTWARE IS PROVIDED "AS IS". BELTO INC. DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED. WE ARE NOT LIABLE FOR DEVICE OVERHEATING, BATTERY DRAIN, OR HALLUCINATIONS PRODUCED BY THE AI MODELS.</p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-4">6. Governing Law</h3>
+                <p class="text-neutral-400 mb-4">These Terms shall be governed by the laws of the State of Delaware and the United States.</p>
             </div>
-            <div class="mt-6 text-center text-xs text-neutral-500">
-                Last updated: Just now
+            
+            <div class="mt-8 pt-8 border-t border-white/10 flex justify-end">
+                <button onclick="closeAllModals()" class="px-8 py-3 bg-white text-black font-bold rounded-full text-sm hover:bg-[var(--accent)] hover:text-white transition-colors">Agree & Close</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        // Data: Model Zoo (From your screenshot/docs)
+        // Data populated from your specific screenshots
         const models = [
-            { id: 'quantum-360m', name: 'Quantum 360M', type: 'Text', size: '200MB', ram: '512MB', desc: 'General chat, Q&A, content generation. Best for web.', recommended: true },
-            { id: 'voicecore-base', name: 'VoiceCore Base', type: 'Voice', size: '256MB', ram: '256MB', desc: 'Real-time transcription. 0.3x real-time factor.', recommended: true },
-            { id: 'quantum-135m', name: 'Quantum 135M', type: 'Text', size: '80MB', ram: '250MB', desc: 'Ultra-lightweight. Autocomplete & classification.' },
-            { id: 'quantum-3b', name: 'Quantum 3B', type: 'Text', size: '1.7GB', ram: '4GB', desc: 'Advanced reasoning, Llama-3.2 based.' },
-            { id: 'voicecore-tiny', name: 'VoiceCore Tiny', type: 'Voice', size: '128MB', ram: '128MB', desc: 'Command word recognition & simple dictation.' },
-            { id: 'quantum-code-3b', name: 'Quantum Code 3B', type: 'Code', size: '1.8GB', ram: '4GB', desc: 'Code completion, debugging, technical writing.' },
-            { id: 'quantum-1.7b', name: 'Quantum 1.7B', type: 'Text', size: '1GB', ram: '2GB', desc: 'Balanced reasoning & creative writing.' },
-            { id: 'quantum-8b', name: 'Quantum 8B', type: 'Text', size: '4.5GB', ram: '8GB', desc: 'Desktop class performance. Complex analysis.' },
-            { id: 'voicecore-small', name: 'VoiceCore Small', type: 'Voice', size: '512MB', ram: '512MB', desc: 'High-fidelity interview transcription.' }
+            { name: 'VoiceCore Base', id: 'voicecore-base', size: '256MB', ram: '256MB', speed: '0.3x RT', desc: 'General transcription, meetings, podcasts.', recommended: true },
+            { name: 'Quantum 360M', id: 'quantum-360m', size: '200MB', ram: '512MB', speed: '40-50 t/s', desc: 'General chat, Q&A, content generation.', recommended: true },
+            { name: 'Quantum 135M', id: 'quantum-135m', size: '80MB', ram: '250MB', speed: '50-60 t/s', desc: 'Quick responses, autocomplete, simple chat.', recommended: false },
+            { name: 'Quantum 3B', id: 'quantum-3b', size: '1700MB', ram: '4GB', speed: '15-25 t/s', desc: 'Advanced chat, detailed analysis, research.', recommended: false },
+            { name: 'VoiceCore Tiny', id: 'voicecore-tiny', size: '128MB', ram: '128MB', speed: '0.2x RT', desc: 'Voice commands, quick transcription, subtitles.', recommended: false },
+            { name: 'Quantum Code 3B', id: 'quantum-code-3b', size: '1800MB', ram: '4GB', speed: '16-25 t/s', desc: 'Code generation, debugging, refactoring.', recommended: true },
+            { name: 'Quantum 1.7B', id: 'quantum-1.7b', size: '1000MB', ram: '2GB', speed: '25-35 t/s', desc: 'Complex reasoning, code generation, analysis.', recommended: false },
+            { name: 'Quantum 8B', id: 'quantum-8b', size: '4500MB', ram: '8GB', speed: '8-15 t/s', desc: 'Professional writing, complex analysis.', recommended: false },
+            { name: 'VoiceCore Small', id: 'voicecore-small', size: '512MB', ram: '512MB', speed: '0.5x RT', desc: 'High-quality transcription, interviews.', recommended: false },
         ];
 
-        // Render Model Grid
-        const zooContainer = document.getElementById('zoo-container');
-        models.forEach(model => {
+        // Render Model Zoo
+        const container = document.getElementById('zoo-container');
+        models.forEach(m => {
             const card = document.createElement('div');
-            card.className = `glass p-6 rounded-xl border-white/5 card-hover relative group`;
+            card.className = `glass p-6 rounded-xl border-white/5 card-hover relative group flex flex-col justify-between h-full`;
             card.innerHTML = `
-                <div class="flex justify-between items-start mb-4">
-                    <div class="px-2 py-1 rounded bg-white/10 text-[10px] uppercase font-bold text-neutral-300">${model.type}</div>
-                    ${model.recommended ? '<div class="px-2 py-1 rounded bg-[var(--accent)]/20 text-[var(--accent)] text-[10px] uppercase font-bold flex items-center gap-1"><i class="ph-fill ph-star"></i> Recommended</div>' : ''}
-                </div>
-                <h3 class="text-xl font-bold mb-1">${model.name}</h3>
-                <div class="text-xs text-neutral-500 font-mono mb-4">${model.id}</div>
-                <p class="text-sm text-neutral-400 mb-6 h-10 line-clamp-2">${model.desc}</p>
-                <div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
-                    <div>
-                        <div class="text-[10px] text-neutral-600 uppercase font-bold">Size</div>
-                        <div class="text-sm font-mono text-white">${model.size}</div>
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="px-2 py-1 rounded bg-white/10 text-[10px] uppercase font-bold text-neutral-300 tracking-wider">${m.id.split('-')[0]}</div>
+                        ${m.recommended ? '<div class="px-2 py-1 rounded bg-[var(--accent)]/20 text-[var(--accent)] text-[10px] uppercase font-bold flex items-center gap-1"><i class="ph-fill ph-star"></i> Recommended</div>' : ''}
                     </div>
-                    <div>
-                        <div class="text-[10px] text-neutral-600 uppercase font-bold">Min RAM</div>
-                        <div class="text-sm font-mono text-white">${model.ram}</div>
+                    <h3 class="text-lg font-bold mb-1 text-white">${m.name}</h3>
+                    <p class="text-sm text-neutral-500 mb-6 h-10 line-clamp-2">${m.desc}</p>
+                    
+                    <div class="grid grid-cols-2 gap-y-4 gap-x-2 border-t border-white/10 pt-4 mb-6">
+                        <div>
+                            <div class="text-[10px] text-neutral-600 uppercase font-bold">Download</div>
+                            <div class="text-xs font-mono text-white">${m.size}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-neutral-600 uppercase font-bold">Min RAM</div>
+                            <div class="text-xs font-mono text-white">${m.ram}</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] text-neutral-600 uppercase font-bold">Speed</div>
+                            <div class="text-xs font-mono text-[var(--accent)]">${m.speed}</div>
+                        </div>
                     </div>
                 </div>
-                <button class="w-full mt-4 py-2 rounded bg-white/5 text-xs font-bold hover:bg-white text-white hover:text-black transition-colors">
-                    Configure &rarr;
+                <button class="w-full py-2 rounded bg-white/5 text-xs font-bold hover:bg-white text-white hover:text-black transition-colors border border-white/5">
+                    Select Model &rarr;
                 </button>
             `;
-            zooContainer.appendChild(card);
+            container.appendChild(card);
         });
 
-        // Modal Logic
+        // Modal Handling
         const backdrop = document.getElementById('modal-backdrop');
-
-        function openModal(type) {
+        
+        function openModal(id) {
             backdrop.classList.remove('hidden');
             backdrop.classList.add('flex');
-            // Small delay to allow display:flex to apply before opacity transition
-            setTimeout(() => {
-                backdrop.classList.remove('opacity-0');
-            }, 10);
+            setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
             
             document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
-            
-            const target = document.getElementById(`modal-${type}`);
-            if(target) target.classList.remove('hidden');
-            
+            document.getElementById(`modal-${id}`).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
@@ -512,7 +512,6 @@
             setTimeout(() => {
                 backdrop.classList.add('hidden');
                 backdrop.classList.remove('flex');
-                document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
             }, 300);
             document.body.style.overflow = '';
         }
