@@ -503,6 +503,203 @@
 </section>
 
 
+
+<section class="py-32 px-6 bg-[#030303] relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Dual Deployment Architectures</h2>
+            <p class="text-xl text-neutral-500 max-w-3xl mx-auto">
+                SlyOS isn't just for phones. It's an infrastructure layer that adapts to the available compute environment.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12">
+
+            <div class="glass p-10 rounded-3xl border border-white/10 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div class="relative z-10 mb-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-bold uppercase tracking-wider mb-4">
+                        Architecture A
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Direct Edge Inference</h3>
+                    <p class="text-neutral-400 leading-relaxed">
+                        The standard SlyOS flow. A user's single device downloads an optimized SLM (e.g., 360M params) and runs it completely independently.
+                    </p>
+                    <ul class="mt-6 space-y-2 text-sm font-mono text-neutral-500">
+                        <li><span class="text-[var(--accent)]">></span> Ultra-low latency</li>
+                        <li><span class="text-[var(--accent)]">></span> Works offline</li>
+                        <li><span class="text-[var(--accent)]">></span> 100% Privacy</li>
+                    </ul>
+                </div>
+
+                <div class="relative h-40 bg-[#0a0a0a] rounded-2xl border border-white/10 flex items-center justify-around px-12 overflow-hidden">
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_30px_-10px_var(--accent)]">
+                            <i class="ph-fill ph-brain text-3xl text-[var(--accent)]"></i>
+                        </div>
+                        <div class="text-xs mt-2 font-mono text-neutral-500">SLM (Cached)</div>
+                    </div>
+
+                    <div class="flex-1 h-[2px] bg-white/10 relative mx-8">
+                        <div class="absolute top-1/2 -translate-y-1/2 left-0 w-1/2 h-[4px] bg-[var(--accent)] blur-[4px] animate-pulse"></div>
+                        <div class="absolute top-1/2 -translate-y-1/2 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent animate-[shimmer_2s_infinite_linear]"></div>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                            <i class="ph-fill ph-device-mobile text-3xl text-white"></i>
+                        </div>
+                        <div class="text-xs mt-2 font-mono text-neutral-500">User Device</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="glass p-10 rounded-3xl border border-blue-500/20 relative overflow-hidden group">
+                 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                <div class="relative z-10 mb-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
+                        Architecture B
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Ad-Hoc Local Grid</h3>
+                    <p class="text-neutral-400 leading-relaxed">
+                        Leverage idle office compute. For latency-independent tasks, SlyOS splits a large model (e.g., 8B) across available workstations over the local 1GbE LAN.
+                    </p>
+                    <ul class="mt-6 space-y-2 text-sm font-mono text-neutral-500">
+                        <li><span class="text-blue-400">></span> utilized idle VRAM/CPU</li>
+                        <li><span class="text-blue-400">></span> Runs larger models</li>
+                        <li><span class="text-blue-400">></span> Data stays on LAN</li>
+                    </ul>
+                </div>
+
+                <div class="relative h-[300px] bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden p-6">
+                    
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grid-flow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:transparent" />
+                                <stop offset="50%" style="stop-color:#3b82f6" /> <stop offset="100%" style="stop-color:transparent" />
+                            </linearGradient>
+                            <filter id="glow-blue">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <path id="path1" d="M 60 150 C 120 50, 180 50, 240 50" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                        <path id="path1-return" d="M 320 50 C 380 50, 440 150, 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                        
+                        <path id="path2" d="M 60 150 L 240 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                        <path id="path2-return" d="M 320 150 L 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+
+                        <path id="path3" d="M 60 150 C 120 250, 180 250, 240 250" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                        <path id="path3-return" d="M 320 250 C 380 250, 440 150, 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+
+                        <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
+                            <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                                <mpath href="#path1"/>
+                            </animateMotion>
+                        </circle>
+                        <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
+                            <animateMotion dur="3s" begin="0.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                                <mpath href="#path2"/>
+                            </animateMotion>
+                        </circle>
+                         <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
+                            <animateMotion dur="3s" begin="0.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                                <mpath href="#path3"/>
+                            </animateMotion>
+                        </circle>
+
+                         <circle r="3" fill="#fff" opacity="0.7">
+                            <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite">
+                                <mpath href="#path1-return"/>
+                            </animateMotion>
+                        </circle>
+                         <circle r="3" fill="#fff" opacity="0.7">
+                            <animateMotion dur="3s" begin="1.7s" repeatCount="indefinite">
+                                <mpath href="#path2-return"/>
+                            </animateMotion>
+                        </circle>
+                         <circle r="3" fill="#fff" opacity="0.7">
+                            <animateMotion dur="3s" begin="1.9s" repeatCount="indefinite">
+                                <mpath href="#path3-return"/>
+                            </animateMotion>
+                        </circle>
+                    </svg>
+
+                    <div class="absolute inset-0 flex items-center justify-between px-4">
+                        
+                        <div class="flex flex-col items-center z-20">
+                             <div class="w-16 h-16 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)]">
+                                <i class="ph-fill ph-brain text-3xl text-blue-400"></i>
+                            </div>
+                            <div class="text-[10px] mt-2 font-mono text-blue-300">Large Model (8B)</div>
+                             <div class="text-[9px] text-neutral-500">Sharded source</div>
+                        </div>
+
+                        <div class="flex flex-col gap-12 z-20 py-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue">
+                                    <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
+                                    <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
+                                </div>
+                                <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station A<br><span class="text-blue-400">Processing Shard 1</span></div>
+                            </div>
+                             <div class="flex items-center gap-2">
+                                 <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue" style="animation-delay: 0.2s">
+                                    <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
+                                    <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
+                                </div>
+                                <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station B<br><span class="text-blue-400">Processing Shard 2</span></div>
+                            </div>
+                             <div class="flex items-center gap-2">
+                                 <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue" style="animation-delay: 0.4s">
+                                    <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
+                                    <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
+                                </div>
+                                <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station C<br><span class="text-blue-400">Processing Shard 3</span></div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center z-20">
+                             <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                                <i class="ph-fill ph-tray text-3xl text-white"></i>
+                            </div>
+                            <div class="text-[10px] mt-2 font-mono text-white">Job Result</div>
+                             <div class="text-[9px] text-neutral-500">Recombined output</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+    @keyframes pulse-blue {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); border-color: rgba(255,255,255,0.1); }
+        50% { box-shadow: 0 0 15px 0px rgba(59, 130, 246, 0.3); border-color: rgba(59, 130, 246, 0.5); }
+    }
+    .animate-pulse-blue {
+        animation: pulse-blue 2s infinite;
+    }
+</style>
+
+
+
+    
+
+
     <section class="py-24 px-6 bg-[#030303] border-t border-white/5">
     <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold mb-12 text-center">Technical FAQ</h2>
