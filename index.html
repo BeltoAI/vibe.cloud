@@ -367,6 +367,49 @@
         </div>
     </section>
 
+
+<section class="py-24 px-6 border-t border-white/5 bg-[#050505]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Built for the next generation of apps.</h2>
+            <p class="text-neutral-500">When latency is zero and privacy is absolute, new product categories emerge.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-6">
+                    <i class="ph-fill ph-chat-circle-text text-purple-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white">Private RAG & Search</h3>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                    Build apps that search through PDFs, notes, or emails locally. The user's personal data never needs to be uploaded to a vector database in the cloud.
+                </p>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                <div class="w-12 h-12 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                    <i class="ph-fill ph-game-controller text-[var(--accent)] text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white">NPC Intelligence</h3>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                    Give game characters dynamic conversations without server costs. Run `quantum-135m` directly in the browser game loop with negligible FPS impact.
+                </p>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-6">
+                    <i class="ph-fill ph-translate text-blue-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white">Offline Translation</h3>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                    Travel apps that work in airplane mode. Translate voice and text instantly without needing a roaming data connection.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+
     <section id="models" class="py-24 px-6 bg-[#030303]">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -454,6 +497,55 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section class="py-24 px-6 bg-[#030303] border-t border-white/5">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center">Technical FAQ</h2>
+        
+        <div class="space-y-4">
+            <div class="border border-white/5 rounded-xl bg-white/[0.02] overflow-hidden group">
+                <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                    <span class="font-bold text-neutral-200">Do users need to download the model every time?</span>
+                    <i class="ph-bold ph-caret-down text-neutral-500 group-hover:text-white transition-colors"></i>
+                </button>
+                <div class="px-6 pb-6 text-sm text-neutral-500 leading-relaxed">
+                    No. SlyOS uses the Cache API and IndexedDB to store model weights persistently on the device. The download (~200MB for base models) happens only once on the first load. Subsequent loads are instant.
+                </div>
+            </div>
+
+            <div class="border border-white/5 rounded-xl bg-white/[0.02] overflow-hidden group">
+                <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                    <span class="font-bold text-neutral-200">What happens on older devices?</span>
+                    <i class="ph-bold ph-caret-down text-neutral-500 group-hover:text-white transition-colors"></i>
+                </button>
+                <div class="px-6 pb-6 text-sm text-neutral-500 leading-relaxed">
+                    The SDK runs a hardware check `SlyOS.checkCompatibility()` before initializing. If the device lacks WebGPU support or sufficient RAM, you can configure a fallback to our cloud API or a graceful degradation message.
+                </div>
+            </div>
+
+            <div class="border border-white/5 rounded-xl bg-white/[0.02] overflow-hidden group">
+                <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                    <span class="font-bold text-neutral-200">Does this drain the user's battery?</span>
+                    <i class="ph-bold ph-caret-down text-neutral-500 group-hover:text-white transition-colors"></i>
+                </button>
+                <div class="px-6 pb-6 text-sm text-neutral-500 leading-relaxed">
+                    Inference is energy-intensive, but we use optimized WebGPU shaders that are significantly more efficient than CPU inference. For short tasks (chat, command classification), the impact is negligible. For long-running tasks, we recommend checking battery status via the SDK.
+                </div>
+            </div>
+
+            <div class="border border-white/5 rounded-xl bg-white/[0.02] overflow-hidden group">
+                <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                    <span class="font-bold text-neutral-200">Are the models uncensored?</span>
+                    <i class="ph-bold ph-caret-down text-neutral-500 group-hover:text-white transition-colors"></i>
+                </button>
+                <div class="px-6 pb-6 text-sm text-neutral-500 leading-relaxed">
+                    Models in the Zoo retain their original base licensing and alignment (e.g., Llama 3 safeguards). However, we offer "Quantum-Code" variants that are fine-tuned for strict instruction following with reduced refusal rates for developer use cases.
+                </div>
             </div>
         </div>
     </div>
