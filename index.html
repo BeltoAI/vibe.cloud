@@ -108,8 +108,9 @@
 
             <div class="hidden md:flex items-center gap-8 text-xs font-medium text-neutral-400 uppercase tracking-wide">
                 <a href="#pipeline" class="hover:text-white transition-colors">How it works</a>
-                <a href="#value-prop" class="hover:text-white transition-colors">Why Local?</a>
+                <a href="#builders" class="hover:text-white transition-colors">For Builders</a>
                 <a href="#models" class="hover:text-white transition-colors">Model Zoo</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -367,47 +368,109 @@
         </div>
     </section>
 
+    <section id="builders" class="py-24 px-6 bg-[#050505] border-t border-white/5 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <div class="flex-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-purple-500/10 text-[10px] font-mono text-purple-400 uppercase tracking-wider">
+                        For Consumer Apps
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Building a Chatbot? <br>Stop paying per token.</h2>
+                    <p class="text-lg text-neutral-400 mb-8 leading-relaxed">
+                        If you are building a consumer app with a chatbot, Cloud API costs scale linearly with your success. With SlyOS, your costs are flat, no matter how much your users chat.
+                    </p>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center shrink-0">
+                                <i class="ph-fill ph-infinite text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Unlimited Inference</h4>
+                                <p class="text-xs text-neutral-500 mt-1">Users can chat for hours without costing you a dime in server bills.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center shrink-0">
+                                <i class="ph-fill ph-rocket-launch text-[var(--accent)]"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Deploy in Seconds</h4>
+                                <p class="text-xs text-neutral-500 mt-1">Build a chatbot locally with one copy and paste terminal command.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<section class="py-24 px-6 border-t border-white/5 bg-[#050505]">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Built for the next generation of apps.</h2>
-            <p class="text-neutral-500">When latency is zero and privacy is absolute, new product categories emerge.</p>
+                <div class="flex-1 w-full">
+                    <div class="glass rounded-xl border border-white/10 p-1 relative overflow-hidden shadow-2xl">
+                        <div class="bg-[#1e1e1e] rounded-lg p-6 font-mono text-sm overflow-x-auto">
+                            <div class="flex gap-2 mb-4">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="text-neutral-400 mb-2"># Install the chat starter kit</div>
+                            <div class="flex items-center gap-2 text-white">
+                                <span class="text-green-500">➜</span>
+                                <span class="typing-effect">npx @belto/create-local-chat</span>
+                            </div>
+                            <div class="text-neutral-500 mt-4 text-xs">
+                                > Cloning template...<br>
+                                > Installing dependencies...<br>
+                                > Downloading Quantum-360M...<br>
+                                <span class="text-green-500">> Ready on localhost:3000 🚀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
-                <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-6">
-                    <i class="ph-fill ph-chat-circle-text text-purple-400 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Private RAG & Search</h3>
-                <p class="text-sm text-neutral-500 leading-relaxed">
-                    Build apps that search through PDFs, notes, or emails locally. The user's personal data never needs to be uploaded to a vector database in the cloud.
-                </p>
+
+    <section class="py-24 px-6 border-t border-white/5 bg-[#050505]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Built for the next generation of apps.</h2>
+                <p class="text-neutral-500">When latency is zero and privacy is absolute, new product categories emerge.</p>
             </div>
 
-            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
-                <div class="w-12 h-12 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                    <i class="ph-fill ph-game-controller text-[var(--accent)] text-2xl"></i>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-6">
+                        <i class="ph-fill ph-chat-circle-text text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Private RAG & Search</h3>
+                    <p class="text-sm text-neutral-500 leading-relaxed">
+                        Build apps that search through PDFs, notes, or emails locally. The user's personal data never needs to be uploaded to a vector database in the cloud.
+                    </p>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-white">NPC Intelligence</h3>
-                <p class="text-sm text-neutral-500 leading-relaxed">
-                    Give game characters dynamic conversations without server costs. Run `quantum-135m` directly in the browser game loop with negligible FPS impact.
-                </p>
-            </div>
 
-            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
-                <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-6">
-                    <i class="ph-fill ph-translate text-blue-400 text-2xl"></i>
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                        <i class="ph-fill ph-game-controller text-[var(--accent)] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">NPC Intelligence</h3>
+                    <p class="text-sm text-neutral-500 leading-relaxed">
+                        Give game characters dynamic conversations without server costs. Run `quantum-135m` directly in the browser game loop with negligible FPS impact.
+                    </p>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Offline Translation</h3>
-                <p class="text-sm text-neutral-500 leading-relaxed">
-                    Travel apps that work in airplane mode. Translate voice and text instantly without needing a roaming data connection.
-                </p>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-6">
+                        <i class="ph-fill ph-translate text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Offline Translation</h3>
+                    <p class="text-sm text-neutral-500 leading-relaxed">
+                        Travel apps that work in airplane mode. Translate voice and text instantly without needing a roaming data connection.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
     
 
     <section id="models" class="py-24 px-6 bg-[#030303]">
@@ -415,289 +478,326 @@
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
                     <h2 class="text-3xl font-bold mb-2">The Model Zoo</h2>
-                    <p class="text-neutral-500">Optimized weights for every use case. Click to deploy.</p>
+                    <p class="text-neutral-500">Your favorite models from hugging face or from what you have run locally.</p>
                 </div>
             </div>
 
             <div id="zoo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </div>
+            </div>
         </div>
     </section>
 
 
 
 
-<section class="py-24 px-6 bg-[#080808] border-t border-white/5">
-    <div class="max-w-7xl mx-auto">
-        <div class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
-            <div>
-                <h2 class="text-3xl font-bold mb-4">Complete Fleet Observability</h2>
-                <p class="text-neutral-500 max-w-xl">
-                    Track latency, memory pressure, and model performance across every device in your fleet. 
-                    Real-time telemetry without seeing user data.
+    <section class="py-24 px-6 bg-[#080808] border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Complete Fleet Observability</h2>
+                    <p class="text-neutral-500 max-w-xl">
+                        Track latency, memory pressure, and model performance across every device in your fleet. 
+                        Real-time telemetry without seeing user data.
+                    </p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="px-4 py-2 rounded bg-white/5 border border-white/10 text-xs font-mono text-neutral-400">
+                        <span class="text-green-500">●</span> 14,203 Active Devices
+                    </div>
+                    <div class="px-4 py-2 rounded bg-white/5 border border-white/10 text-xs font-mono text-neutral-400">
+                        <span class="text-[var(--accent)]">~</span> 42ms Avg Latency
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+                <div class="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-purple-500 to-blue-500 opacity-50"></div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-white/5 text-[10px] uppercase text-neutral-400 font-bold tracking-wider">
+                            <tr>
+                                <th class="px-6 py-4">Device UUID</th>
+                                <th class="px-6 py-4">Environment</th>
+                                <th class="px-6 py-4">Model Loaded</th>
+                                <th class="px-6 py-4">VRAM Usage</th>
+                                <th class="px-6 py-4">Inference Speed</th>
+                                <th class="px-6 py-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-neutral-300 font-mono text-xs">
+                            <tr class="hover:bg-white/[0.02] transition-colors group">
+                                <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-8a92-f3...</td>
+                                <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-globe text-blue-400"></i> Chrome / WebGPU</td>
+                                <td class="px-6 py-4">quantum-360m</td>
+                                <td class="px-6 py-4 text-neutral-500">412MB / 8GB</td>
+                                <td class="px-6 py-4 text-green-400">52 t/s</td>
+                                <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-green-500/10 text-green-500 border border-green-500/20">ONLINE</span></td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors group">
+                                <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-b211-a9...</td>
+                                <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-apple-logo text-white"></i> iOS 17.2</td>
+                                <td class="px-6 py-4">voicecore-base</td>
+                                <td class="px-6 py-4 text-neutral-500">256MB / 6GB</td>
+                                <td class="px-6 py-4 text-green-400">0.3x RT</td>
+                                <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-green-500/10 text-green-500 border border-green-500/20">ONLINE</span></td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors group">
+                                <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-c440-e1...</td>
+                                <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-android-logo text-green-400"></i> Android 14</td>
+                                <td class="px-6 py-4">quantum-135m</td>
+                                <td class="px-6 py-4 text-neutral-500">180MB / 12GB</td>
+                                <td class="px-6 py-4 text-yellow-400">18 t/s</td>
+                                <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">IDLE</span></td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors group">
+                                <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-f999-z0...</td>
+                                <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-desktop text-purple-400"></i> Mac / Metal</td>
+                                <td class="px-6 py-4">quantum-8b</td>
+                                <td class="px-6 py-4 text-neutral-500">5.2GB / 32GB</td>
+                                <td class="px-6 py-4 text-green-400">88 t/s</td>
+                                <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-green-500/10 text-green-500 border border-green-500/20">ONLINE</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="py-32 px-6 bg-[#030303] relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Dual Deployment Architectures</h2>
+                <p class="text-xl text-neutral-500 max-w-3xl mx-auto">
+                    SlyOS isn't just for phones. It's an infrastructure layer that adapts to the available compute environment.
                 </p>
             </div>
-            <div class="flex gap-4">
-                <div class="px-4 py-2 rounded bg-white/5 border border-white/10 text-xs font-mono text-neutral-400">
-                    <span class="text-green-500">●</span> 14,203 Active Devices
-                </div>
-                <div class="px-4 py-2 rounded bg-white/5 border border-white/10 text-xs font-mono text-neutral-400">
-                    <span class="text-[var(--accent)]">~</span> 42ms Avg Latency
-                </div>
-            </div>
-        </div>
-        
-        <div class="glass rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
-            <div class="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-purple-500 to-blue-500 opacity-50"></div>
-            
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-white/5 text-[10px] uppercase text-neutral-400 font-bold tracking-wider">
-                        <tr>
-                            <th class="px-6 py-4">Device UUID</th>
-                            <th class="px-6 py-4">Environment</th>
-                            <th class="px-6 py-4">Model Loaded</th>
-                            <th class="px-6 py-4">VRAM Usage</th>
-                            <th class="px-6 py-4">Inference Speed</th>
-                            <th class="px-6 py-4">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-white/5 text-neutral-300 font-mono text-xs">
-                        <tr class="hover:bg-white/[0.02] transition-colors group">
-                            <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-8a92-f3...</td>
-                            <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-globe text-blue-400"></i> Chrome / WebGPU</td>
-                            <td class="px-6 py-4">quantum-360m</td>
-                            <td class="px-6 py-4 text-neutral-500">412MB / 8GB</td>
-                            <td class="px-6 py-4 text-green-400">52 t/s</td>
-                            <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-green-500/10 text-green-500 border border-green-500/20">ONLINE</span></td>
-                        </tr>
-                        <tr class="hover:bg-white/[0.02] transition-colors group">
-                            <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-b211-a9...</td>
-                            <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-apple-logo text-white"></i> iOS 17.2</td>
-                            <td class="px-6 py-4">voicecore-base</td>
-                            <td class="px-6 py-4 text-neutral-500">256MB / 6GB</td>
-                            <td class="px-6 py-4 text-green-400">0.3x RT</td>
-                            <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-green-500/10 text-green-500 border border-green-500/20">ONLINE</span></td>
-                        </tr>
-                        <tr class="hover:bg-white/[0.02] transition-colors group">
-                            <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-c440-e1...</td>
-                            <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-android-logo text-green-400"></i> Android 14</td>
-                            <td class="px-6 py-4">quantum-135m</td>
-                            <td class="px-6 py-4 text-neutral-500">180MB / 12GB</td>
-                            <td class="px-6 py-4 text-yellow-400">18 t/s</td>
-                            <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">IDLE</span></td>
-                        </tr>
-                        <tr class="hover:bg-white/[0.02] transition-colors group">
-                            <td class="px-6 py-4 text-white group-hover:text-[var(--accent)]">dev-f999-z0...</td>
-                            <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-desktop text-purple-400"></i> Mac / Metal</td>
-                            <td class="px-6 py-4">quantum-8b</td>
-                            <td class="px-6 py-4 text-neutral-500">5.2GB / 32GB</td>
-                            <td class="px-6 py-4 text-green-400">88 t/s</td>
-                            <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-green-500/10 text-green-500 border border-green-500/20">ONLINE</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
 
+            <div class="grid lg:grid-cols-2 gap-12">
 
-
-<section class="py-32 px-6 bg-[#030303] relative overflow-hidden">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen"></div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-        <div class="text-center mb-20">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Dual Deployment Architectures</h2>
-            <p class="text-xl text-neutral-500 max-w-3xl mx-auto">
-                SlyOS isn't just for phones. It's an infrastructure layer that adapts to the available compute environment.
-            </p>
-        </div>
-
-        <div class="grid lg:grid-cols-2 gap-12">
-
-            <div class="glass p-10 rounded-3xl border border-white/10 relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div class="relative z-10 mb-8">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-bold uppercase tracking-wider mb-4">
-                        Architecture A
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4">Direct Edge Inference</h3>
-                    <p class="text-neutral-400 leading-relaxed">
-                        The standard SlyOS flow. A user's single device downloads an optimized SLM (e.g., 360M params) and runs it completely independently.
-                    </p>
-                    <ul class="mt-6 space-y-2 text-sm font-mono text-neutral-500">
-                        <li><span class="text-[var(--accent)]">></span> Ultra-low latency</li>
-                        <li><span class="text-[var(--accent)]">></span> Works offline</li>
-                        <li><span class="text-[var(--accent)]">></span> 100% Privacy</li>
-                    </ul>
-                </div>
-
-                <div class="relative h-40 bg-[#0a0a0a] rounded-2xl border border-white/10 flex items-center justify-around px-12 overflow-hidden">
-                    <div class="relative z-10 flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_30px_-10px_var(--accent)]">
-                            <i class="ph-fill ph-brain text-3xl text-[var(--accent)]"></i>
-                        </div>
-                        <div class="text-xs mt-2 font-mono text-neutral-500">SLM (Cached)</div>
-                    </div>
-
-                    <div class="flex-1 h-[2px] bg-white/10 relative mx-8">
-                        <div class="absolute top-1/2 -translate-y-1/2 left-0 w-1/2 h-[4px] bg-[var(--accent)] blur-[4px] animate-pulse"></div>
-                        <div class="absolute top-1/2 -translate-y-1/2 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent animate-[shimmer_2s_infinite_linear]"></div>
-                    </div>
-
-                    <div class="relative z-10 flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                            <i class="ph-fill ph-device-mobile text-3xl text-white"></i>
-                        </div>
-                        <div class="text-xs mt-2 font-mono text-neutral-500">User Device</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="glass p-10 rounded-3xl border border-blue-500/20 relative overflow-hidden group">
-                 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                <div class="relative z-10 mb-8">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
-                        Architecture B
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4">Ad-Hoc Local Grid</h3>
-                    <p class="text-neutral-400 leading-relaxed">
-                        Leverage idle office compute. For latency-independent tasks, SlyOS splits a large model (e.g., 8B) across available workstations over the local 1GbE LAN.
-                    </p>
-                    <ul class="mt-6 space-y-2 text-sm font-mono text-neutral-500">
-                        <li><span class="text-blue-400">></span> utilized idle VRAM/CPU</li>
-                        <li><span class="text-blue-400">></span> Runs larger models</li>
-                        <li><span class="text-blue-400">></span> Data stays on LAN</li>
-                    </ul>
-                </div>
-
-                <div class="relative h-[300px] bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden p-6">
+                <div class="glass p-10 rounded-3xl border border-white/10 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
-                    <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grid-flow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:transparent" />
-                                <stop offset="50%" style="stop-color:#3b82f6" /> <stop offset="100%" style="stop-color:transparent" />
-                            </linearGradient>
-                            <filter id="glow-blue">
-                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                            </filter>
-                        </defs>
-                        
-                        <path id="path1" d="M 60 150 C 120 50, 180 50, 240 50" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
-                        <path id="path1-return" d="M 320 50 C 380 50, 440 150, 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
-                        
-                        <path id="path2" d="M 60 150 L 240 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
-                        <path id="path2-return" d="M 320 150 L 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                    <div class="relative z-10 mb-8">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-bold uppercase tracking-wider mb-4">
+                            Architecture A
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4">Direct Edge Inference</h3>
+                        <p class="text-neutral-400 leading-relaxed">
+                            The standard SlyOS flow. A user's single device downloads an optimized SLM (e.g., 360M params) and runs it completely independently.
+                        </p>
+                        <ul class="mt-6 space-y-2 text-sm font-mono text-neutral-500">
+                            <li><span class="text-[var(--accent)]">></span> Ultra-low latency</li>
+                            <li><span class="text-[var(--accent)]">></span> Works offline</li>
+                            <li><span class="text-[var(--accent)]">></span> 100% Privacy</li>
+                        </ul>
+                    </div>
 
-                        <path id="path3" d="M 60 150 C 120 250, 180 250, 240 250" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
-                        <path id="path3-return" d="M 320 250 C 380 250, 440 150, 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
-
-                        <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
-                            <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
-                                <mpath href="#path1"/>
-                            </animateMotion>
-                        </circle>
-                        <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
-                            <animateMotion dur="3s" begin="0.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
-                                <mpath href="#path2"/>
-                            </animateMotion>
-                        </circle>
-                         <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
-                            <animateMotion dur="3s" begin="0.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
-                                <mpath href="#path3"/>
-                            </animateMotion>
-                        </circle>
-
-                         <circle r="3" fill="#fff" opacity="0.7">
-                            <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite">
-                                <mpath href="#path1-return"/>
-                            </animateMotion>
-                        </circle>
-                         <circle r="3" fill="#fff" opacity="0.7">
-                            <animateMotion dur="3s" begin="1.7s" repeatCount="indefinite">
-                                <mpath href="#path2-return"/>
-                            </animateMotion>
-                        </circle>
-                         <circle r="3" fill="#fff" opacity="0.7">
-                            <animateMotion dur="3s" begin="1.9s" repeatCount="indefinite">
-                                <mpath href="#path3-return"/>
-                            </animateMotion>
-                        </circle>
-                    </svg>
-
-                    <div class="absolute inset-0 flex items-center justify-between px-4">
-                        
-                        <div class="flex flex-col items-center z-20">
-                             <div class="w-16 h-16 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)]">
-                                <i class="ph-fill ph-brain text-3xl text-blue-400"></i>
+                    <div class="relative h-40 bg-[#0a0a0a] rounded-2xl border border-white/10 flex items-center justify-around px-12 overflow-hidden">
+                        <div class="relative z-10 flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_30px_-10px_var(--accent)]">
+                                <i class="ph-fill ph-brain text-3xl text-[var(--accent)]"></i>
                             </div>
-                            <div class="text-[10px] mt-2 font-mono text-blue-300">Large Model (70B)</div>
-                             <div class="text-[9px] text-neutral-500">Sharded source</div>
+                            <div class="text-xs mt-2 font-mono text-neutral-500">SLM (Cached)</div>
                         </div>
 
-                        <div class="flex flex-col gap-12 z-20 py-4">
-                            <div class="flex items-center gap-2">
-                                <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue">
-                                    <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
-                                    <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
-                                </div>
-                                <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station A<br><span class="text-blue-400">Processing Shard 1</span></div>
-                            </div>
-                             <div class="flex items-center gap-2">
-                                 <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue" style="animation-delay: 0.2s">
-                                    <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
-                                    <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
-                                </div>
-                                <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station B<br><span class="text-blue-400">Processing Shard 2</span></div>
-                            </div>
-                             <div class="flex items-center gap-2">
-                                 <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue" style="animation-delay: 0.4s">
-                                    <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
-                                    <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
-                                </div>
-                                <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station C<br><span class="text-blue-400">Processing Shard 3</span></div>
-                            </div>
+                        <div class="flex-1 h-[2px] bg-white/10 relative mx-8">
+                            <div class="absolute top-1/2 -translate-y-1/2 left-0 w-1/2 h-[4px] bg-[var(--accent)] blur-[4px] animate-pulse"></div>
+                            <div class="absolute top-1/2 -translate-y-1/2 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent animate-[shimmer_2s_infinite_linear]"></div>
                         </div>
 
-                        <div class="flex flex-col items-center z-20">
-                             <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                                <i class="ph-fill ph-tray text-3xl text-white"></i>
+                        <div class="relative z-10 flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                                <i class="ph-fill ph-device-mobile text-3xl text-white"></i>
                             </div>
-                            <div class="text-[10px] mt-2 font-mono text-white">Job Result</div>
-                             <div class="text-[9px] text-neutral-500">Recombined output</div>
+                            <div class="text-xs mt-2 font-mono text-neutral-500">User Device</div>
                         </div>
+                    </div>
+                </div>
 
+
+                <div class="glass p-10 rounded-3xl border border-blue-500/20 relative overflow-hidden group">
+                     <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <div class="relative z-10 mb-8">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
+                            Architecture B
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4">Ad-Hoc Local Grid</h3>
+                        <p class="text-neutral-400 leading-relaxed">
+                            Leverage idle office compute. For latency-independent tasks, SlyOS splits a large model (e.g., 8B) across available workstations over the local 1GbE LAN.
+                        </p>
+                        <ul class="mt-6 space-y-2 text-sm font-mono text-neutral-500">
+                            <li><span class="text-blue-400">></span> utilized idle VRAM/CPU</li>
+                            <li><span class="text-blue-400">></span> Runs larger models</li>
+                            <li><span class="text-blue-400">></span> Data stays on LAN</li>
+                        </ul>
+                    </div>
+
+                    <div class="relative h-[300px] bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden p-6">
+                        
+                        <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="grid-flow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:transparent" />
+                                    <stop offset="50%" style="stop-color:#3b82f6" /> <stop offset="100%" style="stop-color:transparent" />
+                                </linearGradient>
+                                <filter id="glow-blue">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <path id="path1" d="M 60 150 C 120 50, 180 50, 240 50" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                            <path id="path1-return" d="M 320 50 C 380 50, 440 150, 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                            
+                            <path id="path2" d="M 60 150 L 240 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                            <path id="path2-return" d="M 320 150 L 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+
+                            <path id="path3" d="M 60 150 C 120 250, 180 250, 240 250" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+                            <path id="path3-return" d="M 320 250 C 380 250, 440 150, 500 150" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2" stroke-dasharray="5 5"/>
+
+                            <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
+                                <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                                    <mpath href="#path1"/>
+                                </animateMotion>
+                            </circle>
+                            <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
+                                <animateMotion dur="3s" begin="0.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                                    <mpath href="#path2"/>
+                                </animateMotion>
+                            </circle>
+                             <circle r="4" fill="#60a5fa" filter="url(#glow-blue)">
+                                <animateMotion dur="3s" begin="0.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                                    <mpath href="#path3"/>
+                                </animateMotion>
+                            </circle>
+
+                             <circle r="3" fill="#fff" opacity="0.7">
+                                <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite">
+                                    <mpath href="#path1-return"/>
+                                </animateMotion>
+                            </circle>
+                             <circle r="3" fill="#fff" opacity="0.7">
+                                <animateMotion dur="3s" begin="1.7s" repeatCount="indefinite">
+                                    <mpath href="#path2-return"/>
+                                </animateMotion>
+                            </circle>
+                             <circle r="3" fill="#fff" opacity="0.7">
+                                <animateMotion dur="3s" begin="1.9s" repeatCount="indefinite">
+                                    <mpath href="#path3-return"/>
+                                </animateMotion>
+                            </circle>
+                        </svg>
+
+                        <div class="absolute inset-0 flex items-center justify-between px-4">
+                            
+                            <div class="flex flex-col items-center z-20">
+                                 <div class="w-16 h-16 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)]">
+                                    <i class="ph-fill ph-brain text-3xl text-blue-400"></i>
+                                </div>
+                                <div class="text-[10px] mt-2 font-mono text-blue-300">Large Model (70B)</div>
+                                 <div class="text-[9px] text-neutral-500">Sharded source</div>
+                            </div>
+
+                            <div class="flex flex-col gap-12 z-20 py-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue">
+                                        <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
+                                        <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                    <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station A<br><span class="text-blue-400">Processing Shard 1</span></div>
+                                </div>
+                                 <div class="flex items-center gap-2">
+                                     <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue" style="animation-delay: 0.2s">
+                                        <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
+                                        <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                    <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station B<br><span class="text-blue-400">Processing Shard 2</span></div>
+                                </div>
+                                 <div class="flex items-center gap-2">
+                                     <div class="w-12 h-12 rounded-lg bg-[#151515] border border-white/10 flex items-center justify-center relative animate-pulse-blue" style="animation-delay: 0.4s">
+                                        <i class="ph-fill ph-desktop-tower text-xl text-neutral-400"></i>
+                                        <div class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                    <div class="text-[9px] font-mono text-neutral-500 hidden sm:block">Idle Station C<br><span class="text-blue-400">Processing Shard 3</span></div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-center z-20">
+                                 <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                                    <i class="ph-fill ph-tray text-3xl text-white"></i>
+                                </div>
+                                <div class="text-[10px] mt-2 font-mono text-white">Job Result</div>
+                                 <div class="text-[9px] text-neutral-500">Recombined output</div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<style>
-    @keyframes shimmer {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-    }
-    @keyframes pulse-blue {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); border-color: rgba(255,255,255,0.1); }
-        50% { box-shadow: 0 0 15px 0px rgba(59, 130, 246, 0.3); border-color: rgba(59, 130, 246, 0.5); }
-    }
-    .animate-pulse-blue {
-        animation: pulse-blue 2s infinite;
-    }
-</style>
-
+    <style>
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes pulse-blue {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); border-color: rgba(255,255,255,0.1); }
+            50% { box-shadow: 0 0 15px 0px rgba(59, 130, 246, 0.3); border-color: rgba(59, 130, 246, 0.5); }
+        }
+        .animate-pulse-blue {
+            animation: pulse-blue 2s infinite;
+        }
+    </style>
 
 
-    
+
+    <section id="pricing" class="py-24 px-6 bg-[#030303] border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Simple, Flat Pricing</h2>
+            <p class="text-neutral-500 mb-12">Pay for the infrastructure, not the intelligence.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="glass p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all flex flex-col items-center">
+                    <div class="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Developer</div>
+                    <div class="text-4xl font-bold text-white mb-2">$0</div>
+                    <div class="text-sm text-neutral-500 mb-6">Forever</div>
+                    
+                    <ul class="text-sm text-neutral-300 space-y-3 mb-8 text-left w-full pl-8">
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-green-500"></i> First device is free</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-green-500"></i> Access to Model Zoo</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-green-500"></i> Community Support</li>
+                    </ul>
+
+                    <a href="#" class="w-full py-3 rounded bg-white/5 hover:bg-white/10 text-white font-bold text-sm transition-colors border border-white/10">Start Building</a>
+                </div>
+
+                <div class="glass p-8 rounded-2xl border border-[var(--accent)] relative flex flex-col items-center">
+                    <div class="absolute top-0 -translate-y-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
+                    
+                    <div class="text-xs font-bold uppercase tracking-wider text-[var(--accent)] mb-2">Production</div>
+                    <div class="text-4xl font-bold text-white mb-2">$10</div>
+                    <div class="text-sm text-neutral-500 mb-6">per device / month</div>
+                    
+                    <ul class="text-sm text-neutral-300 space-y-3 mb-8 text-left w-full pl-8">
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-[var(--accent)]"></i> First device is free</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-[var(--accent)]"></i> Full Telemetry</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-[var(--accent)]"></i> Priority Support</li>
+                    </ul>
+
+                    <a href="#" class="w-full py-3 rounded bg-[var(--accent)] hover:bg-[#ff6a2b] text-white font-bold text-sm transition-colors shadow-[0_0_20px_-5px_var(--accent)]">Scale Up</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <section class="py-24 px-6 bg-[#030303] border-t border-white/5">
