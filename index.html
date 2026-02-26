@@ -235,138 +235,152 @@
 
     
 
-    <section id="pipeline" class="py-24 px-6 bg-[#030303] relative overflow-hidden">
-        <div class="max-w-7xl mx-auto relative z-10">
-            
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">It's actually this simple.</h2>
-                <p class="text-neutral-500">No complex Python environments. No server management. Just a 3-step pipeline.</p>
+    <section id="pricing" class="py-24 px-6 border-t border-white/5 bg-[#030303] relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-4xl font-bold mb-4 uppercase tracking-tighter text-white">It's actually this simple.</h2>
+            <p class="text-neutral-400 text-lg max-w-2xl">
+                No complex Python environments. No server management. Just a 3-step pipeline: 
+                <span class="text-[var(--accent)] font-mono text-sm ml-2">upload data into a rag db so the LM knows what to talk about.</span>
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">Unit Economics</h3>
+                <p class="text-neutral-500">Benchmarking profitability at 100K active devices.</p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8 relative">
-                <div class="hidden md:block absolute top-[120px] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent z-0"></div>
-
-                <div class="relative z-10 glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-all group h-full flex flex-col">
-                    <div class="w-12 h-12 bg-[#111] rounded-lg border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] text-xl font-bold shadow-[0_0_15px_-5px_rgba(0,0,0,1)]">1</div>
-                    <h3 class="text-xl font-bold mb-3">Select Model</h3>
-                    <p class="text-sm text-neutral-500 mb-6">Choose from our curated Zoo of optimized SLMs (Quantum, VoiceCore) based on your use case.</p>
-                    
-                    <div class="mt-auto bg-[#0a0a0a] rounded border border-white/10 p-3">
-                        <div class="flex items-center gap-2 mb-2 border-b border-white/5 pb-2">
-                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <div class="text-[10px] font-bold uppercase text-white">Selected</div>
-                        </div>
-                        <div class="text-xs text-neutral-300 font-mono">Quantum-360M</div>
-                        <div class="text-[10px] text-neutral-600">Text Generation • 200MB</div>
-                    </div>
-                </div>
-
-                <div class="relative z-10 glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-all group h-full flex flex-col">
-                    <div class="w-12 h-12 bg-[#111] rounded-lg border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] text-xl font-bold shadow-[0_0_15px_-5px_rgba(0,0,0,1)]">2</div>
-                    <h3 class="text-xl font-bold mb-3">Configure</h3>
-                    <p class="text-sm text-neutral-500 mb-6">Set quantization levels (q4, q8) and memory limits. We handle the device compatibility check.</p>
-                    
-                    <div class="mt-auto bg-[#0a0a0a] rounded border border-white/10 p-3 space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="text-[10px] text-neutral-400">Quantization</span>
-                            <span class="text-[10px] font-mono text-[var(--accent)]">INT4</span>
-                        </div>
-                        <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                            <div class="w-[60%] h-full bg-[var(--accent)]"></div>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-[10px] text-neutral-400">Cache Strategy</span>
-                            <span class="text-[10px] font-mono text-white">Persistent</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative z-10 glass p-8 rounded-2xl border-white/5 hover:border-[var(--accent)] transition-all group h-full flex flex-col">
-                    <div class="w-12 h-12 bg-[#111] rounded-lg border border-white/10 flex items-center justify-center mb-6 text-[var(--accent)] text-xl font-bold shadow-[0_0_15px_-5px_rgba(0,0,0,1)]">3</div>
-                    <h3 class="text-xl font-bold mb-3">Fetch SDK</h3>
-                    <p class="text-sm text-neutral-500 mb-6">Drop the code into your app. The SDK handles downloading, caching, and inference.</p>
-                    
-                    <div class="mt-auto bg-[#0a0a0a] rounded border border-white/10 p-3 font-mono text-[10px] text-neutral-400 overflow-hidden">
-                        <span class="hl-k">import</span> SlyOS <span class="hl-k">from</span> <span class="hl-s">'@belto'</span>;<br>
-                        <span class="hl-k">await</span> SlyOS.<span class="hl-f">init</span>({<br>
-                        &nbsp;&nbsp;model: <span class="hl-s">'quantum-360m'</span><br>
-                        });
-                    </div>
-                </div>
-
+            <div class="px-4 py-2 rounded border border-blue-500/30 bg-blue-500/5 text-[10px] font-mono text-blue-400 uppercase tracking-widest">
+                Competitive Pricing (100K Users)
             </div>
         </div>
-    </section>
 
-    <section id="value-prop" class="py-24 px-6 relative bg-gradient-to-b from-[#030303] to-[#080808] border-t border-white/5">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">Why move to the Edge?</h2>
-                <p class="text-lg text-neutral-400 max-w-2xl">
-                    Cloud AI is expensive, slow, and a privacy nightmare. 
-                    <span class="text-white">SlyOS changes the paradigm.</span>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="flex flex-col border border-white/10 bg-[#0A0A0A] rounded-xl overflow-hidden">
+                <div class="p-6 bg-[#111] border-b border-white/5">
+                    <div class="text-[12px] font-mono text-neutral-400 mb-2 uppercase tracking-tighter">01 // Cloud API (Status Quo)</div>
+                </div>
+                <div class="p-8 flex-1">
+                    <div class="mb-8">
+                        <div class="text-5xl font-bold text-red-500 tracking-tighter mb-1">~$1.50</div>
+                        <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Per User / Mo (Variable)</div>
+                    </div>
+                    <div class="space-y-4 mb-10 text-xs font-mono">
+                        <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest border-b border-white/5 pb-2">Cloud Burn (GPT-4o-Mini)</div>
+                        <div class="flex justify-between"><span class="text-neutral-400">Input Tokens (3M/mo)</span> <span class="text-white">$0.45</span></div>
+                        <div class="flex justify-between"><span class="text-neutral-400">Output Tokens (500k/mo)</span> <span class="text-white">$0.30</span></div>
+                        <div class="flex justify-between pb-4 border-b border-white/5"><span class="text-neutral-400">Cloud Vector DB & Routing</span> <span class="text-white">$0.75</span></div>
+                        <div class="flex justify-between font-bold pt-2"><span class="text-white uppercase">Customer's Infra Bill</span> <span class="text-red-500">$150,000/mo</span></div>
+                    </div>
+                </div>
+                <div class="p-6 bg-red-500/5 border-t border-red-500/20 flex justify-between items-center">
+                    <div><div class="text-[10px] text-red-500/70 font-bold uppercase">Result</div><div class="text-sm font-bold text-white uppercase">Margin Destruction</div></div>
+                    <div class="text-right"><div class="text-[10px] text-red-500/70 font-bold uppercase">Cost Control</div><div class="text-sm font-bold text-white">0%</div></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col border border-white/20 bg-[#0F0F0F] rounded-xl overflow-hidden scale-105 z-10 shadow-2xl">
+                <div class="p-6 bg-white/5 border-b border-white/10">
+                    <div class="text-[12px] font-mono text-white mb-2 uppercase tracking-tighter">02 // SlyOS Pure Edge</div>
+                </div>
+                <div class="p-8 flex-1">
+                    <div class="mb-8">
+                        <div class="text-5xl font-bold text-white tracking-tighter mb-1">$0.15</div>
+                        <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Per Device / Mo (Fixed)</div>
+                    </div>
+                    <div class="space-y-4 mb-10 text-xs font-mono">
+                        <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest border-b border-white/5 pb-2">Our Padded AWS COGS</div>
+                        <div class="flex justify-between"><span class="text-neutral-400">Model CDN Egress (5TB)</span> <span class="text-white">$425</span></div>
+                        <div class="flex justify-between"><span class="text-neutral-400">Compute & RDS Database</span> <span class="text-white">$300</span></div>
+                        <div class="flex justify-between pb-4 border-b border-white/5"><span class="text-red-400/60">Hidden Tax (Logs, NAT)</span> <span class="text-white">$275</span></div>
+                        <div class="flex justify-between font-bold pt-2"><span class="text-white uppercase">Our Total AWS Cost</span> <span class="text-[var(--accent)]">$1,000/mo</span></div>
+                    </div>
+                </div>
+                <div class="p-6 bg-green-500/5 border-t border-green-500/20 flex justify-between items-center">
+                    <div><div class="text-[10px] text-green-500 font-bold uppercase">Monthly Rev</div><div class="text-lg font-bold text-white">$15,000</div></div>
+                    <div class="text-right"><div class="text-3xl font-bold text-green-500 tracking-tighter">93.3%</div><div class="text-[10px] text-green-500/70 font-bold uppercase tracking-widest">Gross Margin</div></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col border border-blue-500/30 bg-[#0A0A0A] rounded-xl overflow-hidden">
+                <div class="p-6 bg-blue-600 border-b border-blue-500/20">
+                    <div class="text-[12px] font-mono text-white mb-2 uppercase tracking-tighter font-bold">03 // SlyOS Hybrid RAG</div>
+                </div>
+                <div class="p-8 flex-1">
+                    <div class="mb-8">
+                        <div class="text-5xl font-bold text-white tracking-tighter mb-1">$0.45</div>
+                        <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Per Device / Mo (Fixed)</div>
+                    </div>
+                    <div class="space-y-4 mb-10 text-xs font-mono">
+                        <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest border-b border-white/5 pb-2">Our Padded AWS COGS</div>
+                        <div class="flex justify-between"><span class="text-neutral-400">Model CDN Egress (5TB)</span> <span class="text-white">$425</span></div>
+                        <div class="flex justify-between"><span class="text-neutral-400">API Scaling & Vector DB</span> <span class="text-white">$1,375</span></div>
+                        <div class="flex justify-between pb-4 border-b border-white/5"><span class="text-red-400/60">Hidden Tax (Logs, NAT)</span> <span class="text-white">$700</span></div>
+                        <div class="flex justify-between font-bold pt-2"><span class="text-white uppercase">Our Total AWS Cost</span> <span class="text-blue-400">$2,500/mo</span></div>
+                    </div>
+                </div>
+                <div class="p-6 bg-green-500/5 border-t border-green-500/20 flex justify-between items-center">
+                    <div><div class="text-[10px] text-green-500 font-bold uppercase">Monthly Rev</div><div class="text-lg font-bold text-white">$45,000</div></div>
+                    <div class="text-right"><div class="text-3xl font-bold text-green-500 tracking-tighter">94.4%</div><div class="text-[10px] text-green-500/70 font-bold uppercase tracking-widest">Gross Margin</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+    
+
+  <section id="why-edge" class="py-24 px-6 border-t border-white/5 bg-[#030303]">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-4xl font-bold mb-4 uppercase tracking-tighter text-white">Why Move to the Edge?</h2>
+            <p class="text-neutral-500 text-lg">Shift from "Margin Destruction" to sustainable scaling.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <div class="w-10 h-10 rounded bg-[var(--accent)]/10 flex items-center justify-center border border-[var(--accent)]/20">
+                    <i class="ph-bold ph-chart-line-up text-[var(--accent)]"></i>
+                </div>
+                <h3 class="text-xl font-bold uppercase tracking-tight text-white">Controllable Unit Economics</h3>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    Stop the variable "Cloud Burn." Replace unpredictable $1.50/user variable costs with a fixed $0.15/device fee. 
+                    By moving inference to the edge, you slash infrastructure bills from $150,000/mo down to a manageable $1,000 AWS COGS for CDN and logs.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                
-                <div class="glass p-10 rounded-2xl border-l-4 border-[var(--accent)] relative overflow-hidden group">
-                    <div class="absolute right-0 top-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i class="ph-fill ph-shield-check text-9xl text-white"></i>
-                    </div>
-                    
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                            <i class="ph-bold ph-lock-key text-[var(--accent)] text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-white">Zero-Knowledge Privacy</h3>
-                        <p class="text-neutral-400 leading-relaxed mb-6">
-                            With SlyOS, the prompt never leaves the device. The inference happens 100% locally on the user's NPU/CPU.
-                        </p>
-                        <ul class="space-y-3 text-sm text-neutral-300">
-                            <li class="flex items-center gap-3">
-                                <i class="ph-fill ph-check-circle text-green-500"></i> GDPR & HIPAA Compliant by default
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="ph-fill ph-check-circle text-green-500"></i> No data training on user inputs
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="ph-fill ph-check-circle text-green-500"></i> Immune to server-side leaks
-                            </li>
-                        </ul>
-                    </div>
+            <div class="space-y-4">
+                <div class="w-10 h-10 rounded bg-green-500/10 flex items-center justify-center border border-green-500/20">
+                    <i class="ph-bold ph-test-tube text-green-500"></i>
                 </div>
+                <h3 class="text-xl font-bold uppercase tracking-tight text-white">No Testing Punishment</h3>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    Scaling your testing shouldn't break your bank. Because edge pricing is fixed per device, your gross margins remain at a healthy 93.3% to 94.4% regardless of how many tokens your users (or your QA team) generate.
+                </p>
+            </div>
 
-                <div class="glass p-10 rounded-2xl border-l-4 border-blue-500 relative overflow-hidden group">
-                    <div class="absolute right-0 top-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i class="ph-fill ph-lightning text-9xl text-white"></i>
-                    </div>
-                    
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-6">
-                            <i class="ph-bold ph-lightning text-blue-500 text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-white">Instant Latency</h3>
-                        <p class="text-neutral-400 leading-relaxed mb-6">
-                            Eliminate the network hop. No queuing, no server downtime. Responses are generated instantly on-device.
-                        </p>
-                        <ul class="space-y-3 text-sm text-neutral-300">
-                            <li class="flex items-center gap-3">
-                                <i class="ph-fill ph-check-circle text-blue-400"></i> Works Offline (Airplane Mode)
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="ph-fill ph-check-circle text-blue-400"></i> Zero Server Costs per token
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="ph-fill ph-check-circle text-blue-400"></i> Consistent performance
-                            </li>
-                        </ul>
-                    </div>
+            <div class="space-y-4">
+                <div class="w-10 h-10 rounded bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
+                    <i class="ph-bold ph-arrows-split text-blue-500"></i>
                 </div>
-
+                <h3 class="text-xl font-bold uppercase tracking-tight text-white">Intelligent Hybrid RAG</h3>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    Route to cloud only when it makes sense. Use the Hybrid RAG model to keep 90% of interactions local for privacy and speed, while utilizing cloud-based Vector DBs only for complex retrievals—maintaining high-fidelity responses without the GPT-4o-mini price tag.
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+
+
+
+
+    
 
     <section id="builders" class="py-24 px-6 bg-[#050505] border-t border-white/5 relative overflow-hidden">
         <div class="max-w-7xl mx-auto relative z-10">
@@ -431,61 +445,139 @@
     </section>
 
 
-    <section class="py-24 px-6 border-t border-white/5 bg-[#050505]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Built for the next generation of apps.</h2>
-                <p class="text-neutral-500">When latency is zero and privacy is absolute, new product categories emerge.</p>
+   <section id="next-gen" class="py-24 px-6 border-t border-white/5 bg-[#030303]">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-4xl font-bold mb-4 uppercase tracking-tighter text-white">Built for the next generation of apps.</h2>
+            <p class="text-neutral-400 text-lg max-w-3xl">
+                When latency is zero and privacy is absolute, new product categories emerge.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-12">
+                <div class="border-l-2 border-white/10 pl-8 relative">
+                    <div class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-2">Cluster_01</div>
+                    <h3 class="text-2xl font-bold text-white uppercase tracking-tight mb-4">Productivity Giants</h3>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <div class="text-[10px] text-neutral-500 uppercase mb-1">Customer Pain</div>
+                            <div class="text-sm text-white">Profit eaten by <span class="text-blue-400">Cloud Taxes</span></div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-neutral-500 uppercase mb-1">User Pain</div>
+                            <div class="text-sm text-white">UX killed by <span class="text-blue-400">Latency</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-l-2 border-white/10 pl-8 relative">
+                    <div class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-2">Cluster_02</div>
+                    <h3 class="text-2xl font-bold text-white uppercase tracking-tight mb-4">Model Architects</h3>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <div class="text-[10px] text-neutral-500 uppercase mb-1">Customer Pain</div>
+                            <div class="text-sm text-white">Extreme <span class="text-blue-400">Infra Overhead</span></div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-neutral-500 uppercase mb-1">User Pain</div>
+                            <div class="text-sm text-white">Stalling at <span class="text-blue-400">Prompt Limits</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
-                    <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-6">
-                        <i class="ph-fill ph-chat-circle-text text-purple-400 text-2xl"></i>
+            <div class="relative flex flex-col items-center">
+                <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-[0.3em] mb-8">Hardware Dominance</div>
+                
+                <div class="w-full max-w-md space-y-2">
+                    <div class="mx-auto w-0 h-0 border-l-[60px] border-l-transparent border-r-[60px] border-r-transparent border-bottom-[100px] border-b-blue-600 flex items-end justify-center pb-2">
+                        <span class="text-[10px] font-bold text-white uppercase tracking-widest">Everywhere</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Private RAG & Search</h3>
-                    <p class="text-sm text-neutral-500 leading-relaxed">
-                        Build apps that search through PDFs, notes, or emails locally. The user's personal data never needs to be uploaded to a vector database in the cloud.
-                    </p>
-                </div>
+                    
+                    <div class="w-3/4 mx-auto py-4 border border-white/20 bg-white/5 flex items-center justify-center">
+                        <span class="text-[10px] font-mono text-white uppercase tracking-widest">Smartglasses</span>
+                    </div>
 
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
-                    <div class="w-12 h-12 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                        <i class="ph-fill ph-game-controller text-[var(--accent)] text-2xl"></i>
+                    <div class="w-full py-6 border border-white/20 bg-white/5 flex items-center justify-center">
+                        <span class="text-[10px] font-mono text-white uppercase tracking-widest">Cars / Play Consoles</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">NPC Intelligence</h3>
-                    <p class="text-sm text-neutral-500 leading-relaxed">
-                        Give game characters dynamic conversations without server costs. Run `quantum-135m` directly in the browser game loop with negligible FPS impact.
-                    </p>
-                </div>
 
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
-                    <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-6">
-                        <i class="ph-fill ph-translate text-blue-400 text-2xl"></i>
+                    <div class="w-[115%] -mx-[7.5%] py-8 border border-blue-500/50 bg-blue-500/10 flex items-center justify-center">
+                        <span class="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Phones / Web / Laptops</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Offline Translation</h3>
-                    <p class="text-sm text-neutral-500 leading-relaxed">
-                        Travel apps that work in airplane mode. Translate voice and text instantly without needing a roaming data connection.
-                    </p>
                 </div>
+                <div class="mt-8 text-[10px] font-mono text-blue-500/50 uppercase tracking-widest">Strategic_Alignment // Phase: 01-04</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+    
     
 
-    <section id="models" class="py-24 px-6 bg-[#030303]">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div>
-                    <h2 class="text-3xl font-bold mb-2">The Model Zoo</h2>
-                    <p class="text-neutral-500">Your favorite models from hugging face or from what you have run locally.</p>
+    <section id="model-zoo" class="py-24 px-6 border-t border-white/5 bg-[#030303]">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+                <h2 class="text-4xl font-bold mb-4 uppercase tracking-tighter text-white">Model Zoo</h2>
+                <p class="text-neutral-500 text-lg">Optimized weights for instant edge deployment.</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="px-4 py-2 rounded border border-white/10 bg-white/5 text-[10px] font-mono text-white uppercase tracking-widest flex items-center gap-2">
+                    <i class="ph-bold ph-upload-simple"></i> Upload Custom Weights
+                </div>
+                <div class="px-4 py-2 rounded border border-yellow-500/30 bg-yellow-500/5 text-[10px] font-mono text-yellow-500 uppercase tracking-widest flex items-center gap-2">
+                    <i class="ph-fill ph-smiley"></i> Import from Hugging Face
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="group border border-white/10 bg-[#0A0A0A] p-6 rounded-xl hover:border-[var(--accent)]/50 transition-all">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="p-3 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)]">
+                        <i class="ph-fill ph-cpu text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] font-mono text-green-500 bg-green-500/10 px-2 py-1 rounded">READY</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 tracking-tight">quantum-360m</h3>
+                <p class="text-sm text-neutral-500 mb-6">Ultra-lightweight reasoning engine optimized for mobile NPU architectures.</p>
+                <div class="space-y-2 border-t border-white/5 pt-4">
+                    <div class="flex justify-between text-[10px] font-mono">
+                        <span class="text-neutral-500">RAM USAGE</span>
+                        <span class="text-white">380MB</span>
+                    </div>
+                    <div class="flex justify-between text-[10px] font-mono">
+                        <span class="text-neutral-500">LATENCY</span>
+                        <span class="text-white">~12ms</span>
+                    </div>
                 </div>
             </div>
 
-            <div id="zoo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="group border border-dashed border-white/20 bg-transparent p-6 rounded-xl hover:bg-white/[0.02] transition-all cursor-pointer flex flex-col items-center justify-center text-center">
+                <div class="p-4 rounded-full bg-white/5 mb-4 group-hover:scale-110 transition-transform">
+                    <i class="ph-bold ph-plus text-3xl text-neutral-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white uppercase tracking-tighter">Bring Your Own Model</h3>
+                <p class="text-xs text-neutral-500 mt-2">Drop your .onnx, .tflite, or .gguf files here to quantize for the edge.</p>
+            </div>
+
+            <div class="group border border-yellow-500/20 bg-yellow-500/[0.02] p-6 rounded-xl hover:border-yellow-500/50 transition-all">
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="ph-fill ph-smiley text-3xl text-yellow-500"></i>
+                    <span class="text-[10px] font-mono text-yellow-500 uppercase tracking-widest">Hugging Face Bridge</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 tracking-tight">Direct HF Import</h3>
+                <p class="text-sm text-neutral-500 mb-6">Paste any repository URL. We'll handle the sharding, pruning, and deployment routing.</p>
+                <div class="relative">
+                    <input type="text" placeholder="hf.co/models/..." class="w-full bg-black border border-white/10 rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-yellow-500/50">
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 
@@ -760,45 +852,90 @@
 
 
 
-    <section id="pricing" class="py-24 px-6 bg-[#030303] border-t border-white/5">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-4">Simple, Flat Pricing</h2>
-            <p class="text-neutral-500 mb-12">Pay for the infrastructure, not the intelligence.</p>
+    <section id="pricing" class="py-24 px-6 border-t border-white/5 bg-[#030303] relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+            <div>
+                <h2 class="text-4xl font-bold mb-4 uppercase tracking-tighter">Unit Economics</h2>
+                <p class="text-neutral-500">Competitive pricing at 100K active users.</p>
+            </div>
+            <div class="px-4 py-2 rounded border border-blue-500/30 bg-blue-500/5 text-[10px] font-mono text-blue-400 uppercase tracking-widest">
+                Benchmarking Profitability
+            </div>
+        </div>
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-                <div class="glass p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all flex flex-col items-center">
-                    <div class="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Developer</div>
-                    <div class="text-4xl font-bold text-white mb-2">$0</div>
-                    <div class="text-sm text-neutral-500 mb-6">Forever</div>
-                    
-                    <ul class="text-sm text-neutral-300 space-y-3 mb-8 text-left w-full pl-8">
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-green-500"></i> First device is free</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-green-500"></i> Access to Model Zoo</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-green-500"></i> Community Support</li>
-                    </ul>
-
-                    <a href="#" class="w-full py-3 rounded bg-white/5 hover:bg-white/10 text-white font-bold text-sm transition-colors border border-white/10">Start Building</a>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="flex flex-col border border-white/10 bg-[#0A0A0A] rounded-xl overflow-hidden">
+                <div class="p-6 bg-[#111] border-b border-white/5">
+                    <div class="text-[12px] font-mono text-neutral-400 mb-2 uppercase tracking-tighter">01 // Cloud API (Status Quo)</div>
                 </div>
+                <div class="p-8 flex-1">
+                    <div class="mb-8">
+                        <div class="text-5xl font-bold text-red-500 tracking-tighter mb-1">~$1.50</div>
+                        <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Per User / Mo (Variable)</div>
+                    </div>
+                    <div class="space-y-4 mb-10">
+                        <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest border-b border-white/5 pb-2">Cloud Burn (GPT-4o-Mini)</div>
+                        <div class="flex justify-between text-xs font-mono"><span class="text-neutral-400">Input Tokens (3M/mo)</span> <span class="text-white">$0.45</span></div>
+                        <div class="flex justify-between text-xs font-mono"><span class="text-neutral-400">Output Tokens (500k/mo)</span> <span class="text-white">$0.30</span></div>
+                        <div class="flex justify-between text-xs font-mono pb-4 border-b border-white/5"><span class="text-neutral-400">Cloud Vector DB & Routing</span> <span class="text-white">$0.75</span></div>
+                        <div class="flex justify-between font-bold pt-2"><span class="text-white">Customer's Infra Bill</span> <span class="text-red-500">$150,000/mo</span></div>
+                    </div>
+                </div>
+                <div class="p-6 bg-red-500/5 border-t border-red-500/20 flex justify-between items-center">
+                    <div><div class="text-[10px] text-red-500/70 font-bold uppercase">Result</div><div class="text-sm font-bold text-white uppercase">Margin Destruction</div></div>
+                    <div class="text-right"><div class="text-[10px] text-red-500/70 font-bold uppercase">Control</div><div class="text-sm font-bold text-white">0%</div></div>
+                </div>
+            </div>
 
-                <div class="glass p-8 rounded-2xl border border-[var(--accent)] relative flex flex-col items-center">
-                    <div class="absolute top-0 -translate-y-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
-                    
-                    <div class="text-xs font-bold uppercase tracking-wider text-[var(--accent)] mb-2">Production</div>
-                    <div class="text-4xl font-bold text-white mb-2">$10</div>
-                    <div class="text-sm text-neutral-500 mb-6">per device / month</div>
-                    
-                    <ul class="text-sm text-neutral-300 space-y-3 mb-8 text-left w-full pl-8">
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-[var(--accent)]"></i> First device is free</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-[var(--accent)]"></i> Full Telemetry</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check text-[var(--accent)]"></i> Priority Support</li>
-                    </ul>
+            <div class="flex flex-col border border-white/20 bg-[#0F0F0F] rounded-xl overflow-hidden scale-105 z-10 shadow-2xl">
+                <div class="p-6 bg-white/5 border-b border-white/10">
+                    <div class="text-[12px] font-mono text-white mb-2 uppercase tracking-tighter">02 // SlyOS Pure Edge</div>
+                </div>
+                <div class="p-8 flex-1">
+                    <div class="mb-8">
+                        <div class="text-5xl font-bold text-white tracking-tighter mb-1">$0.15</div>
+                        <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Per Device / Mo (Fixed)</div>
+                    </div>
+                    <div class="space-y-4 mb-10">
+                        <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest border-b border-white/5 pb-2">Padded AWS COGS</div>
+                        <div class="flex justify-between text-xs font-mono"><span class="text-neutral-400">Model CDN Egress (5TB)</span> <span class="text-white">$425</span></div>
+                        <div class="flex justify-between text-xs font-mono"><span class="text-neutral-400">Compute & RDS Database</span> <span class="text-white">$300</span></div>
+                        <div class="flex justify-between text-xs font-mono pb-4 border-b border-white/5"><span class="text-red-400/60">Hidden Tax (Logs, NAT)</span> <span class="text-white">$275</span></div>
+                        <div class="flex justify-between font-bold pt-2"><span class="text-white">Total AWS Cost</span> <span class="text-[var(--accent)]">$1,000/mo</span></div>
+                    </div>
+                </div>
+                <div class="p-6 bg-green-500/5 border-t border-green-500/20 flex justify-between items-center">
+                    <div><div class="text-[10px] text-green-500 font-bold uppercase">Monthly Rev</div><div class="text-lg font-bold text-white">$15,000</div></div>
+                    <div class="text-right"><div class="text-3xl font-bold text-green-500 tracking-tighter">93.3%</div><div class="text-[10px] text-green-500/70 font-bold uppercase">Gross Margin</div></div>
+                </div>
+            </div>
 
-                    <a href="#" class="w-full py-3 rounded bg-[var(--accent)] hover:bg-[#ff6a2b] text-white font-bold text-sm transition-colors shadow-[0_0_20px_-5px_var(--accent)]">Scale Up</a>
+            <div class="flex flex-col border border-blue-500/30 bg-[#0A0A0A] rounded-xl overflow-hidden">
+                <div class="p-6 bg-blue-600 border-b border-blue-500/20">
+                    <div class="text-[12px] font-mono text-white mb-2 uppercase tracking-tighter font-bold">03 // SlyOS Hybrid RAG</div>
+                </div>
+                <div class="p-8 flex-1">
+                    <div class="mb-8">
+                        <div class="text-5xl font-bold text-white tracking-tighter mb-1">$0.45</div>
+                        <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Per Device / Mo (Fixed)</div>
+                    </div>
+                    <div class="space-y-4 mb-10">
+                        <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest border-b border-white/5 pb-2">Padded AWS COGS</div>
+                        <div class="flex justify-between text-xs font-mono"><span class="text-neutral-400">Model CDN Egress (5TB)</span> <span class="text-white">$425</span></div>
+                        <div class="flex justify-between text-xs font-mono"><span class="text-neutral-400">API Scaling & Vector DB</span> <span class="text-white">$1,375</span></div>
+                        <div class="flex justify-between text-xs font-mono pb-4 border-b border-white/5"><span class="text-red-400/60">Hidden Tax (Logs, NAT)</span> <span class="text-white">$700</span></div>
+                        <div class="flex justify-between font-bold pt-2"><span class="text-white">Total AWS Cost</span> <span class="text-blue-400">$2,500/mo</span></div>
+                    </div>
+                </div>
+                <div class="p-6 bg-green-500/5 border-t border-green-500/20 flex justify-between items-center">
+                    <div><div class="text-[10px] text-green-500 font-bold uppercase">Monthly Rev</div><div class="text-lg font-bold text-white">$45,000</div></div>
+                    <div class="text-right"><div class="text-3xl font-bold text-green-500 tracking-tighter">94.4%</div><div class="text-[10px] text-green-500/70 font-bold uppercase">Gross Margin</div></div>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
 
     <section class="py-24 px-6 bg-[#030303] border-t border-white/5">
     <div class="max-w-4xl mx-auto">
