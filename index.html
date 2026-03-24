@@ -327,8 +327,8 @@ function showWelcome(){
 '<p class="dm" style="font-size:10px;margin-bottom:6px">Pick one, or just type what you need:</p>');
 
   var tiles=[
-    {cmd:'overview',icon:'&#9670;',bg:'rgba(255,77,0,.12)',ic:'var(--accent)',label:'What is SlyOS?',desc:'The 30-second pitch',primary:true},
-    {cmd:'why slyos?',icon:'&#9889;',bg:'rgba(74,222,128,.12)',ic:'var(--green)',label:'Why SlyOS?',desc:'Beyond cost savings',primary:true},
+    {cmd:'overview',icon:'&#9670;',bg:'rgba(255,77,0,.12)',ic:'var(--accent)',label:'What is SlyOS?',desc:'How it works, in 10 seconds',primary:true},
+    {cmd:'why slyos?',icon:'&#9889;',bg:'rgba(74,222,128,.12)',ic:'var(--green)',label:'Why SlyOS?',desc:'Speed, privacy, cost, and more',primary:true},
     {cmd:'models',icon:'&#9641;',bg:'rgba(96,165,250,.12)',ic:'var(--blue)',label:'See the Models',desc:'Llama, Whisper, Mistral & more'},
     {cmd:'quickstart',icon:'&#9654;',bg:'rgba(74,222,128,.12)',ic:'var(--green)',label:'Get Started',desc:'Set up in 60 seconds'},
     {cmd:'waitlist',icon:'&#9733;',bg:'rgba(255,77,0,.12)',ic:'var(--accent)',label:'Join the Waitlist',desc:'Get early access',primary:true},
@@ -368,7 +368,8 @@ function go(raw){
   addMsg(input,'msg-user');
   var c=input.toLowerCase().replace(/[^a-z0-9 ]/g,'');
   if(mt(c,['help','commands','menu','home','back','?']))showWelcome();
-  else if(mt(c,['overview','about','what is slyos','what','why','pitch','info']))cmdOverview();
+  else if(mt(c,['why','why slyos','why slyos?','value','benefits','advantage','advantages']))cmdWhySlyOS();
+  else if(mt(c,['overview','about','what is slyos','what','pitch','info']))cmdOverview();
   else if(mt(c,['models','model zoo','zoo','lm','lms','model','llm','slm','see the models']))cmdModels();
   else if(mt(c,['quickstart','quick start','get started','setup','install','how','integrate','integration','how it works','pipeline','steps','sdk','start']))cmdQuickstart();
   else if(mt(c,['platforms','platform','runtime','runtimes','support','supported','webgpu','ios','android','ollama','devices','supported devices']))cmdPlatforms();
@@ -383,7 +384,6 @@ function go(raw){
   else if(mt(c,['privacy','privacy policy']))cmdPrivacy();
   else if(mt(c,['terms','terms of service','tos']))cmdTerms();
   else if(mt(c,['builders','chatbot','consumer','for builders']))cmdBuilders();
-  else if(mt(c,['why','why slyos','value','benefits','advantage','advantages','why slyos?']))cmdWhySlyOS();
   else if(mt(c,['rag','hybrid rag','vector','context']))cmdRAG();
   /* else if(mt(c,['pricing','price','cost','economics','unit economics','how much']))cmdPricing(); */
   else cmdUnknown(input);
@@ -395,55 +395,67 @@ function mt(i,kw){return kw.some(function(k){return i===k||i.indexOf(k)!==-1})}
 
 function cmdOverview(){
   addMsg('<h2>What is SlyOS?</h2>' +
-'<p>Right now, every AI chatbot sends data to the cloud and charges you per message. SlyOS runs the AI <span class="hl">directly on your users\' devices</span> instead. No server needed.</p>' +
+'<p>A platform by Belto Inc. with four parts:</p>' +
 
-'<div class="bar-wrap"><div class="bar-label"><span>Typical cloud cost per user</span><span style="color:var(--red)">~$1.50/mo</span></div><div class="bar"><div class="bar-fill" data-w="85%" style="background:var(--red)"></div></div></div>' +
-'<div class="bar-wrap"><div class="bar-label"><span>SlyOS cost per device</span><span style="color:var(--green)">$0.15/mo</span></div><div class="bar"><div class="bar-fill" data-w="9%" style="background:var(--green)"></div></div></div>' +
+'<div class="card">' +
+'<span class="card-t">&#9641; The SDK</span>' +
+'<div class="card-d">A JavaScript package you add to your app. It downloads, caches, and runs AI models on your users\' devices.</div>' +
+'<div class="cb" style="margin-top:6px;margin-bottom:0"><span class="fn">npm install</span> @belto/slyos-sdk</div>' +
+'</div>' +
+
+'<div class="card">' +
+'<span class="card-t">&#9881; The Dashboard</span>' +
+'<div class="card-d">A web console where you manage your models, upload context data, view device stats, and grab your API key.</div>' +
+'</div>' +
+
+'<div class="card">' +
+'<span class="card-t">&#9641; The Model Zoo</span>' +
+'<div class="card-d">Pre-optimized models (Llama, Whisper, Mistral, etc.) ready to deploy. Or bring your own from HuggingFace.</div>' +
+'</div>' +
+
+'<div class="card">' +
+'<span class="card-t">&#9670; The RAG Engine</span>' +
+'<div class="card-d">Upload your docs, FAQs, or product info. The AI on the user\'s device uses this context to give relevant answers.</div>' +
+'</div>' +
 
 '<hr class="d">' +
-'<div class="ascii">' +
-'  <span class="ag">&#10003;</span> Instant responses (~12-50ms)\n' +
-'  <span class="ag">&#10003;</span> User data never leaves the device\n' +
-'  <span class="ag">&#10003;</span> Works without internet after first download\n' +
-'  <span class="ag">&#10003;</span> Unlimited usage - no per-message fees</div>');
+'<p class="dm">Works on Chrome, Edge (WebGPU) and Desktop (Ollama) today. iOS &amp; Android coming soon.</p>');
   setSug(['why slyos?','get started','see the models','join the waitlist','↩ menu']);
 }
 
 function cmdWhySlyOS(){
   addMsg('<h2>Why SlyOS?</h2>' +
-'<p>It\'s not just about saving money. It\'s about building things that weren\'t possible before.</p><hr class="d">' +
+'<p>What changes when AI runs on the device instead of the cloud?</p><hr class="d">' +
 
 '<div class="card tile-primary">' +
-'<span class="card-t">&#9733; Ship AI features without the budget fear</span>' +
-'<div class="card-d">With cloud APIs, every new AI feature you add burns more money. With SlyOS, you can add unlimited AI features — smart search, autocomplete, chat, voice — without touching your server costs.</div>' +
+'<span class="card-t">&#9733; Add AI everywhere, not just where budget allows</span>' +
+'<div class="card-d">Search, autocomplete, chat, voice, translation — ship them all. Your cost doesn\'t scale with usage.</div>' +
 '</div>' +
 
 '<div class="card">' +
-'<span class="card-t">&#9889; Make your app feel instant</span>' +
-'<div class="card-d">Cloud round-trips take 200-800ms. On-device inference takes 12-50ms. Your users feel the difference immediately. No loading spinners. No "thinking..." delays.</div>' +
+'<span class="card-t">&#9889; Users feel the difference instantly</span>' +
 '</div>' +
 
 '<div class="bar-wrap"><div class="bar-label"><span>Cloud API response</span><span style="color:var(--red)">200-800ms</span></div><div class="bar"><div class="bar-fill" data-w="80%" style="background:var(--red)"></div></div></div>' +
-'<div class="bar-wrap"><div class="bar-label"><span>SlyOS on-device</span><span style="color:var(--green)">12-50ms</span></div><div class="bar"><div class="bar-fill" data-w="6%" style="background:var(--green)"></div></div></div>' +
+'<div class="bar-wrap"><div class="bar-label"><span>On-device response</span><span style="color:var(--green)">12-50ms</span></div><div class="bar"><div class="bar-fill" data-w="6%" style="background:var(--green)"></div></div></div>' +
 
 '<div class="card">' +
-'<span class="card-t">&#128274; Privacy as a real feature, not a checkbox</span>' +
-'<div class="card-d">User data never leaves the device. You can honestly tell your users "we don\'t see your data" — because you literally can\'t. That\'s a competitive advantage in healthcare, finance, legal, and enterprise.</div>' +
+'<span class="card-t">&#128274; "We don\'t see your data" — and actually mean it</span>' +
+'<div class="card-d">Data never leaves the device. A real competitive edge in healthcare, finance, and legal.</div>' +
 '</div>' +
 
 '<div class="card">' +
-'<span class="card-t">&#9992; Works offline, everywhere</span>' +
-'<div class="card-d">Your app works on a plane, in a tunnel, in rural areas with no signal. The AI is already on the device. No internet needed after the first download.</div>' +
+'<span class="card-t">&#9992; Works on a plane, in a tunnel, anywhere</span>' +
+'<div class="card-d">No internet needed after the first model download.</div>' +
 '</div>' +
 
 '<div class="card">' +
-'<span class="card-t">&#8734; Let users actually use the product</span>' +
-'<div class="card-d">With per-token pricing, heavy users cost you the most — so you end up rate-limiting your best customers. With SlyOS, let them chat all day. Your cost is flat.</div>' +
+'<span class="card-t">&#8734; Your heaviest users are your cheapest users</span>' +
+'<div class="card-d">No per-token pricing. Flat cost per device. Let people use it all day.</div>' +
 '</div>' +
 
 '<div class="card">' +
-'<span class="card-t">&#9881; Test without going broke</span>' +
-'<div class="card-d">QA teams and beta testers can generate thousands of messages without blowing your API budget. Your gross margins stay at 93-94% no matter how much testing you do.</div>' +
+'<span class="card-t">&#9881; QA can run 10,000 tests and your bill stays the same</span>' +
 '</div>');
   setSug(['get started','see the models','join the waitlist','book a demo','↩ menu']);
 }
