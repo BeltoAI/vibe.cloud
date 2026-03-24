@@ -182,6 +182,23 @@ body{background:var(--bg);color:var(--fg);font-family:'IBM Plex Mono',monospace;
 .tile-primary:hover{background:rgba(255,77,0,.08);border-color:var(--accent)}
 .tile-primary .tile-icon{background:rgba(255,77,0,.12);color:var(--accent)}
 
+/* model visuals */
+.mcard{background:#0a0a0a;border:1px solid var(--border);border-radius:6px;padding:10px;transition:border-color .2s;display:flex;gap:10px;align-items:center}
+.mcard:hover{border-color:var(--accent)}
+.mlogo{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;letter-spacing:-.02em}
+.minfo{flex:1;min-width:0}
+.mname{color:#fff;font-weight:600;font-size:11px}
+.mby{color:var(--dim);font-size:8px;text-transform:uppercase;letter-spacing:.04em}
+.mbadge{display:inline-block;font-size:8px;padding:1px 5px;border-radius:2px;background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--border);margin-top:3px}
+.radar-wrap{background:#0a0a0a;border:1px solid var(--border);border-radius:6px;padding:12px;margin:8px 0}
+.radar-title{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;text-align:center;margin-bottom:4px}
+.radar-legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.radar-legend span{font-size:8px;display:flex;align-items:center;gap:3px}
+.radar-legend .rdot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.cat-header{display:flex;align-items:center;gap:8px;margin:14px 0 6px}
+.cat-header span{font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.03em}
+.cat-line{flex:1;height:1px;background:var(--border)}
+
 /* ── RESPONSIVE ── */
 @media(min-width:600px){
   .mgrid{grid-template-columns:1fr 1fr}
@@ -211,6 +228,10 @@ body{background:var(--bg);color:var(--fg);font-family:'IBM Plex Mono',monospace;
   .tile-icon{width:28px;height:28px;font-size:15px}
   .tile-label{font-size:10px}
   .tile-desc{font-size:8px}
+  .mcard{padding:8px;gap:8px}
+  .mlogo{width:30px;height:30px;font-size:12px}
+  .mname{font-size:10px}
+  .radar-wrap{padding:8px}
 }
 </style>
 </head>
@@ -428,45 +449,106 @@ function cmdWhySlyOS(){
 }
 
 function cmdModels(){
-  addMsg('<h2>What Can You Run on SlyOS?</h2>' +
-'<p>Any open-source model. We optimize and deliver it to edge devices automatically.</p><hr class="d">' +
+  // radar chart SVG helper
+  function radar(id,models,w){
+    var cx=w/2,cy=w/2,r=w/2-30;
+    var axes=['Speed','Size','Multilingual','Reasoning','Edge-Ready'];
+    var n=axes.length;
+    var svg='<svg viewBox="0 0 '+w+' '+(w+14)+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:'+w+'px;display:block;margin:0 auto">';
+    // grid rings
+    for(var ring=1;ring<=4;ring++){
+      var rr=r*ring/4;var pts=[];
+      for(var i=0;i<n;i++){var a=Math.PI*2*i/n-Math.PI/2;pts.push((cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1))}
+      svg+='<polygon points="'+pts.join(' ')+'" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+    }
+    // axis lines + labels
+    for(var i=0;i<n;i++){
+      var a=Math.PI*2*i/n-Math.PI/2;
+      var ex=(cx+r*Math.cos(a)).toFixed(1),ey=(cy+r*Math.sin(a)).toFixed(1);
+      svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+ex+'" y2="'+ey+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+      var lx=cx+(r+16)*Math.cos(a),ly=cy+(r+16)*Math.sin(a);
+      var anc=i===0?'middle':Math.cos(a)>0.1?'start':Math.cos(a)<-0.1?'end':'middle';
+      svg+='<text x="'+lx.toFixed(1)+'" y="'+(ly+3).toFixed(1)+'" fill="#555" font-size="7" font-family="IBM Plex Mono" text-anchor="'+anc+'">'+axes[i]+'</text>';
+    }
+    // data polygons
+    var colors=['#FF4D00','#60a5fa','#4ade80','#facc15'];
+    models.forEach(function(m,mi){
+      var pts=[];
+      for(var i=0;i<n;i++){var a=Math.PI*2*i/n-Math.PI/2;var v=r*m.vals[i]/10;pts.push((cx+v*Math.cos(a)).toFixed(1)+','+(cy+v*Math.sin(a)).toFixed(1))}
+      svg+='<polygon points="'+pts.join(' ')+'" fill="'+colors[mi]+'" fill-opacity="0.08" stroke="'+colors[mi]+'" stroke-width="1.5" stroke-opacity="0.7"/>';
+      for(var i=0;i<n;i++){var a=Math.PI*2*i/n-Math.PI/2;var v=r*m.vals[i]/10;svg+='<circle cx="'+(cx+v*Math.cos(a)).toFixed(1)+'" cy="'+(cy+v*Math.sin(a)).toFixed(1)+'" r="2.5" fill="'+colors[mi]+'"/>';}
+    });
+    svg+='</svg>';
+    // legend
+    var leg='<div class="radar-legend">';
+    models.forEach(function(m,mi){leg+='<span><span class="rdot" style="background:'+colors[mi]+'"></span>'+m.name+'</span>'});
+    leg+='</div>';
+    return svg+leg;
+  }
 
-'<h3>&#128172; Chat &amp; Reasoning</h3>' +
-'<div class="mgrid">' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">Llama 3 (8B)</span><span class="tag tag-ok">text</span></div><div class="card-d">Meta\'s flagship open model. Conversations, analysis, writing.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~4.5 GB</span></span><span class="st"><span class="st-v">desktop</span></span></div></div>' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">Mistral 7B</span><span class="tag tag-ok">text</span></div><div class="card-d">Fast, strong reasoning. Great for chat and instruction following.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~4 GB</span></span><span class="st"><span class="st-v">desktop</span></span></div></div>' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">Phi-3 Mini (3.8B)</span><span class="tag tag-ok">text</span></div><div class="card-d">Microsoft\'s small-but-mighty model. Runs on phones.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~2 GB</span></span><span class="st"><span class="st-v">mobile + web</span></span></div></div>' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">Qwen 2.5 (7B)</span><span class="tag tag-ok">text</span></div><div class="card-d">Alibaba\'s multilingual powerhouse. 29+ languages.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~4 GB</span></span><span class="st"><span class="st-v">desktop</span></span></div></div>' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">Gemma 2 (2B)</span><span class="tag tag-ok">text</span></div><div class="card-d">Google\'s lightweight model. Ideal for mobile chat.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~1.4 GB</span></span><span class="st"><span class="st-v">mobile + web</span></span></div></div>' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">SmolLM2 (1.7B)</span><span class="tag tag-ok">text</span></div><div class="card-d">HuggingFace\'s ultra-efficient edge model.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~1 GB</span></span><span class="st"><span class="st-v">mobile + web</span></span></div></div>' +
+  addMsg('<h2>Models</h2>' +
+'<p>Run any open-source model on edge. We handle optimization &amp; delivery.</p>' +
+
+'<div class="radar-wrap">' +
+'<div class="radar-title">Model Comparison — Chat &amp; Reasoning</div>' +
+radar('r1',[
+  {name:'Llama 3 8B',vals:[6,4,7,9,6]},
+  {name:'Phi-3 Mini 3.8B',vals:[8,8,5,7,9]},
+  {name:'Mistral 7B',vals:[7,5,6,8,6]},
+  {name:'Gemma 2 2B',vals:[9,9,4,5,10]},
+],220) +
 '</div>' +
 
-'<h3>&#127908; Voice &amp; Speech</h3>' +
+'<div class="cat-header"><span>&#128172; Chat &amp; Reasoning</span><div class="cat-line"></div></div>' +
 '<div class="mgrid">' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">Whisper (Small/Base)</span><span class="tag tag-blue">voice</span></div><div class="card-d">OpenAI\'s speech-to-text. Transcription, subtitles, meetings.</div><div style="margin-top:5px"><span class="st"><span class="st-v">128-256 MB</span></span><span class="st"><span class="st-v">all devices</span></span></div></div>' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">Piper TTS</span><span class="tag tag-blue">voice</span></div><div class="card-d">Fast, natural text-to-speech. Multiple voices and languages.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~60 MB</span></span><span class="st"><span class="st-v">all devices</span></span></div></div>' +
+mcard('Ll','#1877F2','Llama 3','Meta','8B','~4.5 GB','desktop') +
+mcard('Mi','#FF7000','Mistral 7B','Mistral AI','7B','~4 GB','desktop') +
+mcard('&#966;','#5B5FC7','Phi-3 Mini','Microsoft','3.8B','~2 GB','mobile') +
+mcard('Qw','#6F42C1','Qwen 2.5','Alibaba','7B','~4 GB','desktop') +
+mcard('G','#4285F4','Gemma 2','Google','2B','~1.4 GB','mobile') +
+mcard('&#129303;','#FFD21E','SmolLM2','HuggingFace','1.7B','~1 GB','mobile') +
 '</div>' +
 
-'<h3>&#128187; Code</h3>' +
+'<div class="cat-header"><span>&#127908; Voice &amp; Speech</span><div class="cat-line"></div></div>' +
 '<div class="mgrid">' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">CodeLlama (7B)</span><span class="tag" style="background:rgba(96,165,250,.1);color:var(--cyan);border:1px solid rgba(96,165,250,.18)">code</span></div><div class="card-d">Meta\'s code-specialized model. Autocomplete, debug, refactor.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~4 GB</span></span><span class="st"><span class="st-v">desktop</span></span></div></div>' +
-'<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="card-t">StarCoder2 (3B)</span><span class="tag" style="background:rgba(96,165,250,.1);color:var(--cyan);border:1px solid rgba(96,165,250,.18)">code</span></div><div class="card-d">BigCode\'s coding assistant. 600+ programming languages.</div><div style="margin-top:5px"><span class="st"><span class="st-v">~1.8 GB</span></span><span class="st"><span class="st-v">mobile + web</span></span></div></div>' +
+mcard('W','#10A37F','Whisper','OpenAI','STT','128-256 MB','all') +
+mcard('&#9835;','#E84855','Piper TTS','OSS','TTS','~60 MB','all') +
 '</div>' +
 
-'<h3 style="color:var(--accent)">&#9733; Our Pre-Optimized Models</h3>' +
-'<p class="dm" style="margin-bottom:6px">Already quantized, tested, and cached for instant edge delivery:</p>' +
+'<div class="radar-wrap">' +
+'<div class="radar-title">Model Comparison — Code</div>' +
+radar('r2',[
+  {name:'CodeLlama 7B',vals:[6,4,4,8,6]},
+  {name:'StarCoder2 3B',vals:[8,8,3,6,9]},
+],220) +
+'</div>' +
+
+'<div class="cat-header"><span>&#128187; Code</span><div class="cat-line"></div></div>' +
 '<div class="mgrid">' +
-'<div class="card tile-primary"><span class="card-t">Quantum 360M</span><div class="card-d">Our fastest chat model. Runs in any browser. <span class="st"><span class="st-v">200 MB</span></span></div></div>' +
-'<div class="card tile-primary"><span class="card-t">Quantum Code 3B</span><div class="card-d">Code gen, debug, refactor. <span class="st"><span class="st-v">1.8 GB</span></span></div></div>' +
-'<div class="card tile-primary"><span class="card-t">VoiceCore Base</span><div class="card-d">Real-time transcription. <span class="st"><span class="st-v">256 MB</span></span></div></div>' +
+mcard('CL','#1877F2','CodeLlama','Meta','7B','~4 GB','desktop') +
+mcard('&#9733;','#FFD21E','StarCoder2','BigCode','3B','~1.8 GB','mobile') +
+'</div>' +
+
+'<div class="cat-header"><span style="color:var(--accent)">&#9733; Pre-Optimized by Belto</span><div class="cat-line"></div></div>' +
+'<div class="mgrid">' +
+mcard('Q','#FF4D00','Quantum 360M','Belto','chat','200 MB','web',true) +
+mcard('QC','#FF4D00','Quantum Code 3B','Belto','code','1.8 GB','desktop',true) +
+mcard('VC','#FF4D00','VoiceCore Base','Belto','voice','256 MB','all',true) +
 '</div>' +
 
 '<hr class="d">' +
-'<div class="card" style="border-style:dashed">' +
-'<span class="card-t">&#128279; Bring Your Own Model</span>' +
-'<div class="card-d">Upload <code>.onnx</code>, <code>.tflite</code>, or <code>.gguf</code> files — or paste any HuggingFace repo URL. We handle quantization, sharding, and delivery to edge devices.</div>' +
-'</div>');
+'<div class="card" style="border-style:dashed;text-align:center">' +
+'<span class="card-t">&#128279; Bring Your Own</span>' +
+'<div class="card-d">Upload <code>.onnx</code> <code>.tflite</code> <code>.gguf</code> or paste a HuggingFace URL</div></div>');
   setSug(['get started','how it works','join the waitlist','↩ menu']);
+}
+
+function mcard(logo,bg,name,by,param,size,device,primary){
+  var cls=primary?'mcard tile-primary':'mcard';
+  return '<div class="'+cls+'">' +
+'<div class="mlogo" style="background:'+bg+'22;color:'+bg+'">'+logo+'</div>' +
+'<div class="minfo"><div class="mname">'+name+'</div><div class="mby">'+by+' &#183; '+param+'</div>' +
+'<span class="mbadge">'+size+'</span> <span class="mbadge">'+device+'</span></div></div>';
 }
 
 function cmdQuickstart(){
