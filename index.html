@@ -673,18 +673,18 @@
       height: 46px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.025);
+      z-index: 2;
     }
 
-    .screenshot-placeholder::after {
-      content: "Future belto demo screenshot";
+    .demo-screenshot {
       position: absolute;
       inset: 46px 0 0;
-      display: grid;
-      place-items: center;
-      color: rgba(246,248,255,0.34);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      width: 100%;
+      height: calc(100% - 46px);
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      z-index: 1;
     }
 
     .window-dots {
@@ -693,7 +693,7 @@
       left: 18px;
       display: flex;
       gap: 7px;
-      z-index: 2;
+      z-index: 3;
     }
 
     .window-dots i {
@@ -907,7 +907,7 @@
         <a href="#solution">Solution</a>
         <a href="#product">Product</a>
         <a href="#research">Research</a>
-        <a href="demo.html">Login</a>
+        <a href="https://space-ruddy-five.vercel.app/" target="_blank" rel="noopener">Login</a>
       </div>
     </nav>
   </header>
@@ -921,7 +921,7 @@
         <div class="hero-actions">
           <a class="btn primary" href="https://calendly.com/emil-shirokikh-belto/30min" target="_blank" rel="noopener">Schedule Demo</a>
           <a class="btn" href="https://zenodo.org/records/19207086" target="_blank" rel="noopener">View Research</a>
-          <a class="btn" href="demo.html">Login to Demo</a>
+          <a class="btn" href="https://space-ruddy-five.vercel.app/" target="_blank" rel="noopener">Login to Demo</a>
         </div>
       </div>
     </section>
@@ -1085,12 +1085,13 @@
           <h2>Simulate a mission package before the real screenshot lands.</h2>
           <p class="lead">Login to the belto demo to deploy an AI package to a simulated satellite and inspect mission logs.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="demo.html">Login to Demo</a>
+            <a class="btn primary" href="https://space-ruddy-five.vercel.app/" target="_blank" rel="noopener">Login to Demo</a>
           </div>
         </div>
 
         <div class="screenshot-placeholder reveal">
           <div class="window-dots"><i></i><i></i><i></i></div>
+          <img class="demo-screenshot" src="demodemodemo.png" alt="belto demo screenshot" />
         </div>
       </div>
     </section>
@@ -1127,7 +1128,7 @@
       <div class="footer-links">
         <a href="https://zenodo.org/records/19207086" target="_blank" rel="noopener">Research</a>
         <a href="https://calendly.com/emil-shirokikh-belto/30min" target="_blank" rel="noopener">Schedule Demo</a>
-        <a href="demo.html">Login</a>
+        <a href="https://space-ruddy-five.vercel.app/" target="_blank" rel="noopener">Login</a>
       </div>
     </div>
   </footer>
